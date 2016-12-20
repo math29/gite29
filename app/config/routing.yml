@@ -1,7 +1,7 @@
-common:
-    resource: "@CommonBundle/Controller/"
+common_entity:
+    resource: "@CommonEntityBundle/Controller/"
     type:     annotation
-    prefix:   /
+    prefix:   /entity
 
 front:
     resource: "@FrontBundle/Controller/"

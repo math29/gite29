@@ -1,6 +1,6 @@
 <?php
 
-namespace CommonBundle\Repository;
+namespace Common\EntityBundle\Repository;
 
 /**
  * GiteRepository
