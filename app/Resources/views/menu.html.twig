@@ -1,20 +1,30 @@
 <header class="page-head">
     <!-- RD Navbar-->
     <div class="rd-navbar-wrap header_minimal">
-        <nav class="rd-navbar" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fullwidth" data-md-layout="rd-navbar-static" data-lg-layout="rd-navbar-static" data-device-layout="rd-navbar-fixed" data-sm-device-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-device-layout="rd-navbar-static" data-stick-up-offset="100px">
+        <nav class="rd-navbar"
+             data-layout="rd-navbar-fixed"
+             data-sm-layout="rd-navbar-fullwidth"
+             data-md-layout="rd-navbar-static"
+             data-lg-layout="rd-navbar-static"
+             data-device-layout="rd-navbar-fixed"
+             data-sm-device-layout="rd-navbar-fixed"
+             data-md-device-layout="rd-navbar-fixed"
+             data-lg-device-layout="rd-navbar-static"
+             data-stick-up-offset="100px"
+        >
             <div class="rd-navbar-inner inner-wrap">
                 <div class="rd-navbar-panel">
                     <!-- RD Navbar Toggle-->
                     <button data-rd-navbar-toggle=".rd-navbar-nav-wrap" class="rd-navbar-toggle"><span></span></button>
                     <!-- RD Navbar Brand-->
-                    <div class="rd-navbar-brand"><a href="#" class="brand-name"><img src="{{ asset('bundles/front/images/logo-1.png') }}" alt=""></a></div>
+                    <div class="rd-navbar-brand"><a href="{{ path('home') }}" class="brand-name"><img src="{{ asset('bundles/front/images/logo-1.png') }}" alt=""></a></div>
                 </div>
                 <div class="btn-group"><a href="#" class="btn btn-sm btn-primary">Inscrire son gite</a></div>
                 <div class="rd-navbar-nav-wrap">
                     <!-- RD Navbar Nav-->
                     <ul class="rd-navbar-nav">
-                        <li><a href="./">Accueil</a></li>
-                        <li><a href="#">Les gites</a></li>
+                        <li><a href="{{ path('home') }}">Accueil</a></li>
+                        <li><a href="{{ path('property-catalogue-single', {'id': 1} ) }}">Les gites</a></li>
                         <li class="link-group"><a href="#" class="btn btn-sm btn-primary">Inscrire son gite</a></li>
                     </ul>
                 </div>
