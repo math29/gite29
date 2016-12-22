@@ -1,6 +1,6 @@
 <?php
 
-namespace FrontBundle\Controller;
+namespace Front\HomeBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -12,6 +12,6 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('FrontBundle:Default:index.html.twig');
+        return $this->render('FrontHomeBundle:Default:index.html.twig');
     }
 }

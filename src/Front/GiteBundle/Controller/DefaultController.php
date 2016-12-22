@@ -1,6 +1,6 @@
 <?php
 
-namespace FrontBundle\Controller;
+namespace Front\GiteBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -12,15 +12,15 @@ use Symfony\Component\HttpFoundation\Request;
 use Common\EntityBundle\Entity\Gite,
     Common\EntityBundle\Form\GiteType;
 
-class GiteController extends Controller
+class DefaultController extends Controller
 {
     /**
-     * @Route("/gite/{id}", name="property-catalogue-single")
+     * @Route("/{id}", name="property-catalogue-single", requirements={"id": "\d+"})
      * @ParamConverter("gite", class="CommonEntityBundle:Gite")
      */
     public function indexAction($id)
     {
-        return $this->render('FrontBundle:Page:property-catalogue-single.html.twig', array(
+        return $this->render('FrontGiteBundle:Page:show.html.twig', array(
             "id" => $id
         ));
     }
@@ -46,7 +46,7 @@ class GiteController extends Controller
             return $this->redirectToRoute('home');
         }
 
-        return $this->render('FrontBundle:Page:newGite.html.twig', array(
+        return $this->render('FrontGiteBundle:Page:new.html.twig', array(
             'form' => $form->createView(),
         ));
     }

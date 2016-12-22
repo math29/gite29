@@ -19,13 +19,13 @@
                     <!-- RD Navbar Brand-->
                     <div class="rd-navbar-brand"><a href="{{ path('home') }}" class="brand-name"><img src="{{ asset('bundles/front/images/logo-1.png') }}" alt=""></a></div>
                 </div>
-                <div class="btn-group"><a href="#" class="btn btn-sm btn-primary">Inscrire son gite</a></div>
+                <div class="btn-group"><a href="{{ path('new-property') }}" class="btn btn-sm btn-primary">Inscrire son gite</a></div>
                 <div class="rd-navbar-nav-wrap">
                     <!-- RD Navbar Nav-->
                     <ul class="rd-navbar-nav">
                         <li><a href="{{ path('home') }}">Accueil</a></li>
                         <li><a href="{{ path('property-catalogue-single', {'id': 1} ) }}">Les gites</a></li>
-                        <li class="link-group"><a href="#" class="btn btn-sm btn-primary">Inscrire son gite</a></li>
+                        <li class="link-group"><a href="{{ path('new-property') }}" class="btn btn-sm btn-primary">Inscrire son gite</a></li>
                     </ul>
                 </div>
             </div>

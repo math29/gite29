@@ -1,9 +1,14 @@
+front_home:
+    resource: "@FrontHomeBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+front_gite:
+    resource: "@FrontGiteBundle/Controller/"
+    type:     annotation
+    prefix:   /gite
+
 common_entity:
     resource: "@CommonEntityBundle/Controller/"
     type:     annotation
     prefix:   /entity
-
-front:
-    resource: "@FrontBundle/Controller/"
-    type:     annotation
-    prefix:   /
