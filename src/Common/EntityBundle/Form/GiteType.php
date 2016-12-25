@@ -5,7 +5,13 @@ namespace Common\EntityBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
+use Symfony\Component\Form\Extension\Core\Type\SubmitType,
+    Symfony\Component\Form\Extension\Core\Type\TextType,
+    Symfony\Component\Form\Extension\Core\Type\TextareaType,
+    Symfony\Component\Form\Extension\Core\Type\ChoiceType,
+    Symfony\Component\Form\Extension\Core\Type\IntegerType,
+    Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class GiteType extends AbstractType
 {
@@ -15,22 +21,38 @@ class GiteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('title', TextType::class, array('label' => 'Titre de la location'))
             ->add('owner')
-            ->add('title')
             ->add('location')
             ->add('area')
-            ->add('bedrooms')
-            ->add('bathrooms')
-            ->add('garages')
+            ->add('bedrooms', IntegerType::class, array('label' => 'Nombre de chambres'))
+            ->add('bathrooms', IntegerType::class, array('label' => 'Nombre de salle de bain'))
+            ->add('garages', IntegerType::class, array('label' => 'Places de parking'))
             ->add('features')
-            ->add('yearBuilt')
+            ->add('yearBuilt', DateType::class, array('label' => 'Année de construction'))
             ->add('size')
             ->add('roomCount')
-            ->add('viewType')
-            ->add('garden')
-            ->add('description')
+            ->add('viewType', ChoiceType::class, array(
+                'label' => 'Type de vue',
+                'choices'  => array(
+                    'Montagne' => 'MONTAINS',
+                    'Mer' => 'SEA',
+                    'Campagne' => 'CAMPAIGN',
+                ))
+            )
+            ->add('garden', ChoiceType::class, array(
+                'label' => 'Jardin',
+                'choices'  => array(
+                    'Maybe' => null,
+                    'Yes' => true,
+                    'No' => false,
+                ))
+            )
+            ->add('description', TextareaType::class, array(
+                'label' => 'La description du gite'
+            ))
             ->add('reviews')
-            ->add('save', SubmitType::class);
+            ->add('submit', SubmitType::class);
     }
     
     /**

@@ -10,9 +10,8 @@
                         <h1>Submit Property</h1>
                         <p></p>
                         <ol class="breadcrumb">
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="#">Pages</a></li>
-                            <li class="active">Submit Property</li>
+                            <li><a href="{{ path('home') }}">Home</a></li>
+                            <li class="active">Inscrire son gite</li>
                         </ol>
                     </div>
                 </div>
@@ -20,122 +19,121 @@
         </section>
         <section class="section-md">
             <div class="container">
-                <h2>Fill in the Form</h2>
+                <h2>Inscription de votre gite</h2>
                 <hr>
                 <div class="row submit-form text-left">
                     <div class="col-sm-6">
-                        <!-- RD form-->
-                        <form class="inset-6">
-                            <div class="form-group">
-                                <label for="title" class="form-label">Property Title</label>
-                                <input id="title" type="text" name="title" placeholder="No title" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="message" class="form-label">Property Description</label>
-                                <textarea id="message" name="message" placeholder="No Description" class="form-control min-height"></textarea>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="select-1" class="form-label">Type</label>
-                                        <!--Select 2-->
-                                        <select id="select-1" data-minimum-results-for-search="Infinity" class="form-control select-filter">
-                                            <option value="Any" selected>Any</option>
-                                            <option value="Under Construction">Under Construction</option>
-                                            <option value="Ready to Move">Ready to Move</option>
-                                        </select>
+                        {{ form_start(form) }}
+                        {{ form_errors(form) }}
+                            <!--<form class="inset-6">-->
+                                <div class="form-group">
+                                    {{ form_row(form.title, {'attr': {'placeholder' : 'Le title', 'class': 'form-control'}}) }}
+                                    {{ form_errors(form.title) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_row(form.description, {'attr': {'placeholder' : 'Votre description', 'class': 'form-control min-height'}}) }}
+                                    {{ form_errors(form.description) }}
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            {{ form_row(form.viewType, {'attr': {'class': 'form-control select-filter', 'data-minimum-results-for-search':'Infinity'}}) }}
+                                            {{ form_errors(form.viewType) }}
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="select-2" class="form-label">Property Status</label>
+                                            <!--Select 2-->
+                                            <select id="select-2" data-minimum-results-for-search="Infinity" class="form-control select-filter">
+                                                <option value="Any" selected>Any</option>
+                                                <option value="Vacant land">Vacant land</option>
+                                                <option value="Commercial">Commercial</option>
+                                                <option value="Residential">Residential</option>
+                                                <option value="Homes">Homes</option>
+                                                <option value="Condos">Condos</option>
+                                                <option value="Townhouses">Townhouses</option>
+                                                <option value="Foreclosures">Foreclosures</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="select-3" class="form-label">Location</label>
+                                            <select id="select-3" data-minimum-results-for-search="Infinity" class="form-control select-filter">
+                                                <option value="Any" selected>Any</option>
+                                                <option value="Denver">Denver</option>
+                                                <option value="Houston">Houston</option>
+                                                <option value="Las Vegas">Las Vegas</option>
+                                                <option value="Orlando">Orlando</option>
+                                                <option value="Phoenix">Phoenix</option>
+                                                <option value="San Diego">San Diego</option>
+                                                <option value="Miami">Miami</option>
+                                                <option value="Atlanta">Atlanta</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="price" class="form-label">Price</label>
+                                            <input id="price" type="text" name="price" placeholder="" class="form-control">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="select-2" class="form-label">Property Status</label>
-                                        <!--Select 2-->
-                                        <select id="select-2" data-minimum-results-for-search="Infinity" class="form-control select-filter">
-                                            <option value="Any" selected>Any</option>
-                                            <option value="Vacant land">Vacant land</option>
-                                            <option value="Commercial">Commercial</option>
-                                            <option value="Residential">Residential</option>
-                                            <option value="Homes">Homes</option>
-                                            <option value="Condos">Condos</option>
-                                            <option value="Townhouses">Townhouses</option>
-                                            <option value="Foreclosures">Foreclosures</option>
-                                        </select>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="select-4" class="form-label">Beds</label>
+                                            <select id="select-4" data-minimum-results-for-search="Infinity" class="form-control select-filter">
+                                                <option value="Any" selected>Any</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="select-5" class="form-label">Baths</label>
+                                            <select id="select-5" data-minimum-results-for-search="Infinity" class="form-control select-filter">
+                                                <option value="Any" selected>Any</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="select-6" class="form-label">Garages</label>
+                                            <select id="select-6" data-minimum-results-for-search="Infinity" class="form-control select-filter">
+                                                <option value="Any" selected>Any</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="square" class="form-label">Square</label>
+                                            <input id="square" type="text" name="title" placeholder="" class="form-control">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="select-3" class="form-label">Location</label>
-                                        <select id="select-3" data-minimum-results-for-search="Infinity" class="form-control select-filter">
-                                            <option value="Any" selected>Any</option>
-                                            <option value="Denver">Denver</option>
-                                            <option value="Houston">Houston</option>
-                                            <option value="Las Vegas">Las Vegas</option>
-                                            <option value="Orlando">Orlando</option>
-                                            <option value="Phoenix">Phoenix</option>
-                                            <option value="San Diego">San Diego</option>
-                                            <option value="Miami">Miami</option>
-                                            <option value="Atlanta">Atlanta</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="price" class="form-label">Price</label>
-                                        <input id="price" type="text" name="price" placeholder="" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="select-4" class="form-label">Beds</label>
-                                        <select id="select-4" data-minimum-results-for-search="Infinity" class="form-control select-filter">
-                                            <option value="Any" selected>Any</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="select-5" class="form-label">Baths</label>
-                                        <select id="select-5" data-minimum-results-for-search="Infinity" class="form-control select-filter">
-                                            <option value="Any" selected>Any</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="select-6" class="form-label">Garages</label>
-                                        <select id="select-6" data-minimum-results-for-search="Infinity" class="form-control select-filter">
-                                            <option value="Any" selected>Any</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="square" class="form-label">Square</label>
-                                        <input id="square" type="text" name="title" placeholder="" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                            <!--</form>-->
+
+                        {{ form_row(form.submit, { 'label': 'Submit me' }) }}
+                        {{ form_end(form) }}
                     </div>
                     <div class="col-xs-12 col-sm-6">
                         <!--Google map search-->

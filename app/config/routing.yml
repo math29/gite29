@@ -12,3 +12,6 @@ common_entity:
     resource: "@CommonEntityBundle/Controller/"
     type:     annotation
     prefix:   /entity
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
