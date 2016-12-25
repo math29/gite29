@@ -38,3 +38,4 @@ php bin/console server:start
 
 ###Release 0.0.3
 - Add user fixtures
+- Customize FosUserBundle templates and forms
