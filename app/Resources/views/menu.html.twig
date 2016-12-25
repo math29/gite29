@@ -1,17 +1,47 @@
 <header class="page-head">
     <!-- RD Navbar-->
-    <div class="rd-navbar-wrap header_minimal">
-        <nav class="rd-navbar"
-             data-layout="rd-navbar-fixed"
-             data-sm-layout="rd-navbar-fullwidth"
-             data-md-layout="rd-navbar-static"
-             data-lg-layout="rd-navbar-static"
-             data-device-layout="rd-navbar-fixed"
-             data-sm-device-layout="rd-navbar-fixed"
-             data-md-device-layout="rd-navbar-fixed"
-             data-lg-device-layout="rd-navbar-static"
-             data-stick-up-offset="100px"
-        >
+    <div class="rd-navbar-wrap header_corporate">
+        <nav class="rd-navbar" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fullwidth" data-md-layout="rd-navbar-fullwidth" data-lg-layout="rd-navbar-fullwidth" data-device-layout="rd-navbar-fixed" data-sm-device-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-device-layout="rd-navbar-fullwidth" data-stick-up-offset="100px">
+            <div class="rd-navbar-top-panel">
+                <div class="rd-navbar-top-panel-wrap">
+                    <dl class="dl-horizontal-mod-1 login">
+                        <dt><span class="mdi mdi-login icon-xxs-mod-2"></span></dt>
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                            <a href="{{ path('fos_user_security_logout') }}">
+                                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                            </a>
+                        {% else %}
+                            <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                        {% endif %}
+                    </dl>
+                    <div class="top-panel-inner">
+                        <dl class="dl-horizontal-mod-1">
+                            <dt><span class="material-icons-local_phone icon-xxs-mod-2"></span></dt>
+                            <dd><a href="callto:#"> 1-800-1234-567</a></dd>
+                        </dl>
+                        <dl class="dl-horizontal-mod-1">
+                            <dt><span class="material-icons-drafts icon-xxs-mod-2"></span></dt>
+                            <dd><a href="mailto:#"> info@demolink.org</a></dd>
+                        </dl>
+                        <address>
+                            <dl class="dl-horizontal-mod-1">
+                                <dt><span class="mdi mdi-map-marker-radius icon-xxs-mod-2"></span></dt>
+                                <dd><a href="#" class="inset-11">795 Folsom Ave, Suite 600 San Francisco, CA 94107</a></dd>
+                            </dl>
+                        </address>
+                    </div>
+                    <ul class="list-inline">
+                        <li><a href="#" class="fa-facebook"></a></li>
+                        <li><a href="#" class="fa-twitter"></a></li>
+                        <li><a href="#" class="fa-pinterest-p"></a></li>
+                        <li><a href="#" class="fa-vimeo"></a></li>
+                        <li><a href="#" class="fa-google"></a></li>
+                        <li><a href="#" class="fa-rss"></a></li>
+                    </ul>
+                    <div class="btn-group"><a href="submit-property.html" class="btn btn-sm btn-primary">Submit Property</a></div>
+                </div>
+            </div>
             <div class="rd-navbar-inner inner-wrap">
                 <div class="rd-navbar-panel">
                     <!-- RD Navbar Toggle-->

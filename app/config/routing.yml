@@ -8,6 +8,11 @@ front_gite:
     type:     annotation
     prefix:   /gite
 
+common_user:
+    resource: "@CommonUserBundle/Controller/"
+    type:     annotation
+    prefix:   /user
+
 common_entity:
     resource: "@CommonEntityBundle/Controller/"
     type:     annotation

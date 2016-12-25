@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <main class="page-content text-center text-sm-left">
+        <!-- Section Title Breadcrumbs-->
+        <section class="section-full undefined">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 undefined">
+                        <h1>{% block subtitle %}{% endblock %}</h1>
+                        <p></p>
+                        <ol class="breadcrumb">
+                            <li><a href="{{ path('home') }}">Home</a></li>
+                            <li class="active">{{ block('subtitle') }}</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section-md">
+            <div class="container">
+                <h2>Se connecter</h2>
+                <hr>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-8 col-lg-5">
+                        {% for type, messages in app.session.flashBag.all %}
+                            {% for message in messages %}
+                                <div class="{{ type }}">
+                                    {{ message|trans({}, 'FOSUserBundle') }}
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                        {% block fos_user_content %}
+                        {% endblock fos_user_content %}
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}

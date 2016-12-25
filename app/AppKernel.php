@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Front\GiteBundle\FrontGiteBundle(),
             new Front\HomeBundle\FrontHomeBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new Common\UserBundle\CommonUserBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

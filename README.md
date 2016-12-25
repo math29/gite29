@@ -35,3 +35,6 @@ php bin/console server:start
 - Add gite creation page
 - Add Gite object
 - Add FOSUserBundle
+
+###Release 0.0.3
+- Add user fixtures
