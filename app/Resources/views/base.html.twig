@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="stylesheet" href="{{ asset('bundles/front/css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('front-assets/css/style.css') }}">
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <!--[if lt IE 10]>
@@ -17,8 +17,8 @@
             {% block body %}{% endblock %}
             {{ include('footer.html.twig') }}
         </div>
-        <script src="{{ asset('bundles/front/js/core.min.js') }}"></script>
-        <script src="{{ asset('bundles/front/js/script.js') }}"></script>
+        <script src="{{ asset('front-assets/js/core.min.js') }}"></script>
+        <script src="{{ asset('front-assets/js/script.js') }}"></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

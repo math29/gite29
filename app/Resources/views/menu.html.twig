@@ -18,26 +18,17 @@
                     <div class="top-panel-inner">
                         <dl class="dl-horizontal-mod-1">
                             <dt><span class="material-icons-local_phone icon-xxs-mod-2"></span></dt>
-                            <dd><a href="callto:#"> 1-800-1234-567</a></dd>
+                            <dd><a href="callto:+33631067282"> 06 31 06 72 82</a></dd>
                         </dl>
                         <dl class="dl-horizontal-mod-1">
                             <dt><span class="material-icons-drafts icon-xxs-mod-2"></span></dt>
                             <dd><a href="mailto:#"> info@demolink.org</a></dd>
                         </dl>
-                        <address>
-                            <dl class="dl-horizontal-mod-1">
-                                <dt><span class="mdi mdi-map-marker-radius icon-xxs-mod-2"></span></dt>
-                                <dd><a href="#" class="inset-11">795 Folsom Ave, Suite 600 San Francisco, CA 94107</a></dd>
-                            </dl>
-                        </address>
+                        <address></address>
                     </div>
                     <ul class="list-inline">
                         <li><a href="#" class="fa-facebook"></a></li>
-                        <li><a href="#" class="fa-twitter"></a></li>
                         <li><a href="#" class="fa-pinterest-p"></a></li>
-                        <li><a href="#" class="fa-vimeo"></a></li>
-                        <li><a href="#" class="fa-google"></a></li>
-                        <li><a href="#" class="fa-rss"></a></li>
                     </ul>
                     <div class="btn-group"><a href="submit-property.html" class="btn btn-sm btn-primary">Submit Property</a></div>
                 </div>
@@ -47,14 +38,14 @@
                     <!-- RD Navbar Toggle-->
                     <button data-rd-navbar-toggle=".rd-navbar-nav-wrap" class="rd-navbar-toggle"><span></span></button>
                     <!-- RD Navbar Brand-->
-                    <div class="rd-navbar-brand"><a href="{{ path('home') }}" class="brand-name"><img src="{{ asset('bundles/front/images/logo-1.png') }}" alt=""></a></div>
+                    <div class="rd-navbar-brand"><a href="{{ path('home') }}" class="brand-name"><img src="{{ asset('front-assets/images/logo-1.png') }}" alt=""></a></div>
                 </div>
                 <div class="btn-group"><a href="{{ path('new-property') }}" class="btn btn-sm btn-primary">Inscrire son gite</a></div>
                 <div class="rd-navbar-nav-wrap">
                     <!-- RD Navbar Nav-->
                     <ul class="rd-navbar-nav">
                         <li><a href="{{ path('home') }}">Accueil</a></li>
-                        <li><a href="{{ path('property-catalogue-single', {'id': 1} ) }}">Les gites</a></li>
+                        <li><a href="{{ path('search_display_all') }}">Les gites</a></li>
                         <li class="link-group"><a href="{{ path('new-property') }}" class="btn btn-sm btn-primary">Inscrire son gite</a></li>
                     </ul>
                 </div>

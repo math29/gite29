@@ -1,3 +1,8 @@
+front_search:
+    resource: "@FrontSearchBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 front_home:
     resource: "@FrontHomeBundle/Controller/"
     type:     annotation

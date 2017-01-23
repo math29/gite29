@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Front\HomeBundle\FrontHomeBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Common\UserBundle\CommonUserBundle(),
+            new Front\SearchBundle\FrontSearchBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
