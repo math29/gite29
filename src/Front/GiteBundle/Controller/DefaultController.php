@@ -15,13 +15,13 @@ use Common\EntityBundle\Entity\Gite,
 class DefaultController extends Controller
 {
     /**
-     * @Route("/{id}", name="property-catalogue-single", requirements={"id": "\d+"})
+     * @Route("/{id}", name="property-gite-single", requirements={"id": "\d+"})
      * @ParamConverter("gite", class="CommonEntityBundle:Gite")
      */
-    public function indexAction($id)
+    public function indexAction($gite)
     {
         return $this->render('FrontGiteBundle:Page:show.html.twig', array(
-            "id" => $id
+            "gite" => $gite
         ));
     }
 

@@ -29,7 +29,6 @@ class GiteType extends AbstractType
             ->add('bathrooms', IntegerType::class, array('label' => 'Nombre de salle de bain'))
             ->add('garages', IntegerType::class, array('label' => 'Places de parking'))
             ->add('features')
-            ->add('yearBuilt', DateType::class, array('label' => 'Année de construction'))
             ->add('size')
             ->add('roomCount')
             ->add('viewType', ChoiceType::class, array(

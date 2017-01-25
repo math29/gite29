@@ -78,13 +78,6 @@ class Gite
     private $features;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="yearBuilt", type="integer", nullable=true)
-     */
-    private $yearBuilt;
-
-    /**
      * @var float
      *
      * @ORM\Column(name="size", type="float", nullable=true)
