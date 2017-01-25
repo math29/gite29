@@ -38,16 +38,9 @@ class Gite
     /**
      * @var string
      *
-     * @ORM\Column(name="location", type="string", length=255)
+     * @ORM\Column(name="address", type="string", length=255)
      */
-    private $location;
-
-    /**
-     * @var float
-     *
-     * @ORM\Column(name="area", type="float")
-     */
-    private $area;
+    private $address;
 
     /**
      * @var int
@@ -179,52 +172,29 @@ class Gite
     }
 
     /**
-     * Set location
+     * Set address
      *
-     * @param string $location
+     * @param string $address
      *
      * @return Gite
      */
-    public function setLocation($location)
+    public function setAddress($address)
     {
-        $this->location = $location;
+        $this->address = $address;
 
         return $this;
     }
 
     /**
-     * Get location
+     * Get address
      *
      * @return string
      */
-    public function getLocation()
+    public function getAddress()
     {
-        return $this->location;
+        return $this->address;
     }
 
-    /**
-     * Set area
-     *
-     * @param float $area
-     *
-     * @return Gite
-     */
-    public function setArea($area)
-    {
-        $this->area = $area;
-
-        return $this;
-    }
-
-    /**
-     * Get area
-     *
-     * @return float
-     */
-    public function getArea()
-    {
-        return $this->area;
-    }
 
     /**
      * Set bedrooms

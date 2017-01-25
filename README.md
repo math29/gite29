@@ -39,3 +39,7 @@ php bin/console server:start
 ###Release 0.0.3
 - Add user fixtures
 - Customize FosUserBundle templates and forms
+
+###Release 0.0.4
+- Add search gite module
+- Update gite creation page

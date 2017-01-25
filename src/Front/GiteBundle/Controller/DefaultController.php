@@ -31,7 +31,6 @@ class DefaultController extends Controller
     public function newAction(Request $request)
     {
         $gite = new Gite();
-        $gite->setArea(1);
         $form = $this->createForm(GiteType::class, $gite);
 
         $form->handleRequest($request);

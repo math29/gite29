@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType,
     Symfony\Component\Form\Extension\Core\Type\TextareaType,
     Symfony\Component\Form\Extension\Core\Type\ChoiceType,
     Symfony\Component\Form\Extension\Core\Type\IntegerType,
+    Symfony\Component\Form\Extension\Core\Type\CollectionType,
     Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class GiteType extends AbstractType
@@ -23,14 +24,13 @@ class GiteType extends AbstractType
         $builder
             ->add('title', TextType::class, array('label' => 'Titre de la location'))
             ->add('owner')
-            ->add('location')
-            ->add('area')
+            ->add('address', TextType::class, array('label' => 'Adresse du gite'))
             ->add('bedrooms', IntegerType::class, array('label' => 'Nombre de chambres'))
             ->add('bathrooms', IntegerType::class, array('label' => 'Nombre de salle de bain'))
             ->add('garages', IntegerType::class, array('label' => 'Places de parking'))
-            ->add('features')
-            ->add('size')
-            ->add('roomCount')
+            ->add('features', CollectionType::class, array('label' => 'equipements'))
+            ->add('size', IntegerType::class, array('label' => 'Superficie en mètres carrés'))
+            ->add('roomCount', IntegerType::class, array('label' => 'Nombre de chambres'))
             ->add('viewType', ChoiceType::class, array(
                 'label' => 'Type de vue',
                 'choices'  => array(
