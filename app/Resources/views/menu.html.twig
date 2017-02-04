@@ -30,7 +30,11 @@
                         <li><a href="#" class="fa-facebook"></a></li>
                         <li><a href="#" class="fa-pinterest-p"></a></li>
                     </ul>
-                    <div class="btn-group"><a href="submit-property.html" class="btn btn-sm btn-primary">Submit Property</a></div>
+                    <div class="btn-group">
+                        {% if is_granted('ROLE_USER') %}
+                            <a href="{{ path('new-property') }}" class="btn btn-sm btn-primary">Submit Property</a>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
             <div class="rd-navbar-inner inner-wrap">
@@ -40,13 +44,19 @@
                     <!-- RD Navbar Brand-->
                     <div class="rd-navbar-brand"><a href="{{ path('home') }}" class="brand-name"><img src="{{ asset('front-assets/images/logo-1.png') }}" alt=""></a></div>
                 </div>
-                <div class="btn-group"><a href="{{ path('new-property') }}" class="btn btn-sm btn-primary">Inscrire son gite</a></div>
+                <div class="btn-group">
+                    {% if is_granted('ROLE_USER') %}
+                        <a href="{{ path('new-property') }}" class="btn btn-sm btn-primary">Inscrire son gite</a>
+                    {% endif %}
+                </div>
                 <div class="rd-navbar-nav-wrap">
                     <!-- RD Navbar Nav-->
                     <ul class="rd-navbar-nav">
                         <li><a href="{{ path('home') }}">Accueil</a></li>
                         <li><a href="{{ path('search_display_all') }}">Les gites</a></li>
-                        <li class="link-group"><a href="{{ path('new-property') }}" class="btn btn-sm btn-primary">Inscrire son gite</a></li>
+                        {% if is_granted('ROLE_USER') %}
+                            <li class="link-group"><a href="{{ path('new-property') }}" class="btn btn-sm btn-primary">Inscrire son gite</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>

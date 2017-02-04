@@ -2,6 +2,7 @@
 
 namespace Common\EntityBundle\Entity;
 
+use Common\EntityBundle\CommonEntityBundle;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -22,9 +23,8 @@ class Gite
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="owner", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="gites")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $owner;
 
@@ -124,27 +124,19 @@ class Gite
     }
 
     /**
-     * Set owner
-     *
-     * @param string $owner
-     *
-     * @return Gite
-     */
-    public function setOwner($owner)
-    {
-        $this->owner = $owner;
-
-        return $this;
-    }
-
-    /**
-     * Get owner
-     *
-     * @return string
+     * @return mixed
      */
     public function getOwner()
     {
         return $this->owner;
+    }
+
+    /**
+     * @param mixed $owner
+     */
+    public function setOwner(User $owner)
+    {
+        $this->owner = $owner;
     }
 
     /**

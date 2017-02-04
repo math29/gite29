@@ -3,6 +3,7 @@
 namespace Common\EntityBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -23,7 +24,7 @@ class GiteType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, array('label' => 'Titre de la location'))
-            ->add('owner')
+            ->add('owner', HiddenType::class)
             ->add('address', TextType::class, array('label' => 'Adresse du gite'))
             ->add('bedrooms', IntegerType::class, array('label' => 'Nombre de chambres'))
             ->add('bathrooms', IntegerType::class, array('label' => 'Nombre de salle de bain'))

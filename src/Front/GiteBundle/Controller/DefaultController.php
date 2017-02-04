@@ -31,6 +31,8 @@ class DefaultController extends Controller
     public function newAction(Request $request)
     {
         $gite = new Gite();
+        $gite->setOwner($this->getUser());
+
         $form = $this->createForm(GiteType::class, $gite);
 
         $form->handleRequest($request);
@@ -39,6 +41,7 @@ class DefaultController extends Controller
             $gite = $form->getData();
 
             $em = $this->getDoctrine()->getManager();
+
             $em->persist($gite);
             $em->flush();
 
