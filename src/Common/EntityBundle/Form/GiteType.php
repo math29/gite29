@@ -23,13 +23,31 @@ class GiteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class, array('label' => 'Titre de la location'))
-            ->add('owner', HiddenType::class)
             ->add('address', TextType::class, array('label' => 'Adresse du gite'))
+
+            ->add('kind', ChoiceType::class, array(
+                'label' => 'Genre d\'habitation',
+                'choices'  => array(
+                    'Maison' => 'HOUSE',
+                    'Appartement' => 'FLAT',
+                    'Bungalow' => 'BUNGALOW'
+                )
+            ))
+
+            ->add('capacity', IntegerType::class, array('label' => 'Nombre de vacanciers pouvant etre accueillis'))
+            
+
+            ->add('title', TextType::class, array('label' => 'Titre de l\'annonce'))
             ->add('bedrooms', IntegerType::class, array('label' => 'Nombre de chambres'))
             ->add('bathrooms', IntegerType::class, array('label' => 'Nombre de salle de bain'))
-            ->add('garages', IntegerType::class, array('label' => 'Places de parking'))
-            ->add('features', CollectionType::class, array('label' => 'equipements'))
+            ->add('garages', IntegerType::class, array('label' => 'Nombre de parkings'))
+            ->add('features', ChoiceType::class, array(
+                'label' => 'Equipements',
+                'multiple' => true,
+                'choices'  => array(
+                    'Four' => ''
+                )
+            ))
             ->add('size', IntegerType::class, array('label' => 'Superficie en mètres carrés'))
             ->add('roomCount', IntegerType::class, array('label' => 'Nombre de chambres'))
             ->add('viewType', ChoiceType::class, array(
@@ -52,6 +70,7 @@ class GiteType extends AbstractType
                 'label' => 'La description du gite'
             ))
             ->add('reviews')
+            ->add('owner', HiddenType::class)
             ->add('submit', SubmitType::class);
     }
     
