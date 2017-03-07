@@ -19,7 +19,8 @@ class GiteType extends AbstractType
 {
     /**
      * {@inheritdoc}
-     */
+
+   '  */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -35,40 +36,64 @@ class GiteType extends AbstractType
             ))
 
             ->add('capacity', IntegerType::class, array('label' => 'Nombre de vacanciers pouvant etre accueillis'))
-            
-
-            ->add('title', TextType::class, array('label' => 'Titre de l\'annonce'))
-            ->add('bedrooms', IntegerType::class, array('label' => 'Nombre de chambres'))
+            ->add('beds', IntegerType::class, array('label' => 'Nombre de lits'))
             ->add('bathrooms', IntegerType::class, array('label' => 'Nombre de salle de bain'))
-            ->add('garages', IntegerType::class, array('label' => 'Nombre de parkings'))
+            ->add('size', IntegerType::class, array('label' => 'Superficie du gite'))
+
             ->add('features', ChoiceType::class, array(
                 'label' => 'Equipements',
                 'multiple' => true,
                 'choices'  => array(
-                    'Four' => ''
+                    'BASE_PRODUCTS' => 'Produits de base (Serviettes, draps, savon et papier toilette)',
+                    'WIFI' => 'Wi-Fi',
+                    'Shampoo' => 'Shampoing',
+                    'WARDROBE' => 'Penderie/Commode',
+                    'TV' => 'Télévision',
+                    'HEATING' => 'Chauffage',
+                    'AC' => 'Climatisation',
+                    'BREAKFAST' => 'Petit déjeuner, café, thé',
+                    'DESK' => 'Bureau/Espace de travail',
+                    'FIREPLACE' => 'Cheminée',
+                    'IRON' => 'Fer à repasser',
+                    'HAIR_DRYER' => 'Sèche-cheveux',
+                    'PETS' => 'Animaux domestiques sur place',
+                    'PRIVATE_ENTER' => 'Entrée privée'
                 )
             ))
-            ->add('size', IntegerType::class, array('label' => 'Superficie en mètres carrés'))
-            ->add('roomCount', IntegerType::class, array('label' => 'Nombre de chambres'))
-            ->add('viewType', ChoiceType::class, array(
-                'label' => 'Type de vue',
+            ->add('safety_features', ChoiceType::class, array(
+                'label' => 'Sécurité',
+                'multiple' => true,
                 'choices'  => array(
-                    'Montagne' => 'MONTAINS',
-                    'Mer' => 'SEA',
-                    'Campagne' => 'CAMPAIGN',
-                ))
-            )
-            ->add('garden', ChoiceType::class, array(
-                'label' => 'Jardin',
+                    'SMOKE_CHECKER' => 'Détecteur de fumée',
+                    'CARBONE_CHECKER' => 'Détecteur de monoxyde de carbone',
+                    'FIRST_HELP_KIT' => 'Kit de premiers secours',
+                    'SECURITY_LIST' => 'Fiche de sécurité',
+                    'EXTINGUISHER' => 'Extincteur',
+                    'ROOM_LOCK' => 'Porte de la chambre avec verrou'
+                )
+            ))
+
+            ->add('spaces', ChoiceType::class, array(
+                'label' => 'Espaces de vie',
+                'multiple' => true,
                 'choices'  => array(
-                    'Maybe' => null,
-                    'Yes' => true,
-                    'No' => false,
-                ))
-            )
+                    'KITCHEN' => 'Cuisine',
+                    'WACH_MACHINE' => 'Lave-linge',
+                    'DRY_MACHINE' => 'Sèche-linge',
+                    'PARKING' => 'Parking',
+                    'GARAGE' => 'Garage',
+                    'ELEVATOR' => 'Ascenseur',
+                    'SWIMMING_POOL' => 'Piscine',
+                    'JACUZZI' => 'Jacuzzi',
+                    'GARDEN' => 'Jardin'
+                )
+            ))
+
+            ->add('title', TextType::class, array('label' => 'Titre de l\'annonce'))
             ->add('description', TextareaType::class, array(
                 'label' => 'La description du gite'
             ))
+
             ->add('reviews')
             ->add('owner', HiddenType::class)
             ->add('submit', SubmitType::class);

@@ -31,44 +31,37 @@ class Gite
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=255)
-     */
-    private $title;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="address", type="string", length=255)
      */
     private $address;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="bedrooms", type="integer")
-     */
-    private $bedrooms;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="bathrooms", type="integer", nullable=true)
-     */
-    private $bathrooms;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="garages", type="integer", nullable=true)
-     */
-    private $garages;
-
-    /**
      * @var array
      *
-     * @ORM\Column(name="features", type="array", nullable=true)
+     * @ORM\Column(name="kind", type="array", nullable=true)
      */
-    private $features;
+    private $kind;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="capacity", type="integer")
+     */
+    private $capacity;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="beds", type="integer")
+     */
+    private $beds;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="bathrooms", type="integer")
+     */
+    private $bathrooms;
 
     /**
      * @var float
@@ -78,25 +71,32 @@ class Gite
     private $size;
 
     /**
-     * @var int
+     * @var array
      *
-     * @ORM\Column(name="roomCount", type="integer", nullable=true)
+     * @ORM\Column(name="features", type="array", nullable=true)
      */
-    private $roomCount;
+    private $features;
+
+    /**
+     * @var array
+     *
+     * @ORM\Column(name="safety_features", type="array", nullable=true)
+     */
+    private $safety_features;
+
+    /**
+     * @var array
+     *
+     * @ORM\Column(name="spaces", type="array", nullable=true)
+     */
+    private $spaces;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="viewType", type="string", length=255, nullable=true)
+     * @ORM\Column(name="title", type="string", length=255)
      */
-    private $viewType;
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="garden", type="boolean", nullable=true)
-     */
-    private $garden;
+    private $title;
 
     /**
      * @var string
@@ -106,12 +106,18 @@ class Gite
     private $description;
 
     /**
+     * @var image
+     *
+     * @ORM\OneToMany(targetEntity="Photo", mappedBy="gite", cascade={"persist"})
+     */
+    private $photos;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="reviews", type="string", length=255, nullable=true)
      */
     private $reviews;
-
 
     /**
      * Get id
@@ -451,5 +457,165 @@ class Gite
     {
         return $this->reviews;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->photos = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add photo
+     *
+     * @param \Common\EntityBundle\Entity\Photo $photo
+     *
+     * @return Gite
+     */
+    public function addPhoto(\Common\EntityBundle\Entity\Photo $photo)
+    {
+        $this->photos[] = $photo;
+
+        return $this;
+    }
+
+    /**
+     * Remove photo
+     *
+     * @param \Common\EntityBundle\Entity\Photo $photo
+     */
+    public function removePhoto(\Common\EntityBundle\Entity\Photo $photo)
+    {
+        $this->photos->removeElement($photo);
+    }
+
+    /**
+     * Get photos
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPhotos()
+    {
+        return $this->photos;
+    }
+
+    /**
+     * Set kind
+     *
+     * @param array $kind
+     *
+     * @return Gite
+     */
+    public function setKind($kind)
+    {
+        $this->kind = $kind;
+
+        return $this;
+    }
+
+    /**
+     * Get kind
+     *
+     * @return array
+     */
+    public function getKind()
+    {
+        return $this->kind;
+    }
+
+    /**
+     * Set capacity
+     *
+     * @param integer $capacity
+     *
+     * @return Gite
+     */
+    public function setCapacity($capacity)
+    {
+        $this->capacity = $capacity;
+
+        return $this;
+    }
+
+    /**
+     * Get capacity
+     *
+     * @return integer
+     */
+    public function getCapacity()
+    {
+        return $this->capacity;
+    }
+
+    /**
+     * Set beds
+     *
+     * @param integer $beds
+     *
+     * @return Gite
+     */
+    public function setBeds($beds)
+    {
+        $this->beds = $beds;
+
+        return $this;
+    }
+
+    /**
+     * Get beds
+     *
+     * @return integer
+     */
+    public function getBeds()
+    {
+        return $this->beds;
+    }
+
+    /**
+     * Set safetyFeatures
+     *
+     * @param array $safetyFeatures
+     *
+     * @return Gite
+     */
+    public function setSafetyFeatures($safetyFeatures)
+    {
+        $this->safety_features = $safetyFeatures;
+
+        return $this;
+    }
+
+    /**
+     * Get safetyFeatures
+     *
+     * @return array
+     */
+    public function getSafetyFeatures()
+    {
+        return $this->safety_features;
+    }
+
+    /**
+     * Set spaces
+     *
+     * @param array $spaces
+     *
+     * @return Gite
+     */
+    public function setSpaces($spaces)
+    {
+        $this->spaces = $spaces;
+
+        return $this;
+    }
+
+    /**
+     * Get spaces
+     *
+     * @return array
+     */
+    public function getSpaces()
+    {
+        return $this->spaces;
+    }
+}
