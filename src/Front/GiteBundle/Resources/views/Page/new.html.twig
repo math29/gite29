@@ -36,12 +36,6 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            {{ form_row(form.bedrooms, {'attr': {'placeholder' : 'Nombre chambres', 'class': 'form-control'}}) }}
-                                            {{ form_errors(form.bedrooms) }}
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
                                             {{ form_row(form.bathrooms, {'attr': {'placeholder' : 'Nombre Salle de bains', 'class': 'form-control'}}) }}
                                             {{ form_errors(form.bathrooms) }}
                                         </div>
@@ -58,14 +52,6 @@
                                                 <option value="5">5</option>
                                                 <option value="6">6</option>
                                             </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            {{ form_row(form.viewType, {'attr': {'class': 'form-control select-filter', 'data-minimum-results-for-search':'Infinity'}}) }}
-                                            {{ form_errors(form.viewType) }}
                                         </div>
                                     </div>
                                 </div>

@@ -193,31 +193,6 @@ class Gite
         return $this->address;
     }
 
-
-    /**
-     * Set bedrooms
-     *
-     * @param integer $bedrooms
-     *
-     * @return Gite
-     */
-    public function setBedrooms($bedrooms)
-    {
-        $this->bedrooms = $bedrooms;
-
-        return $this;
-    }
-
-    /**
-     * Get bedrooms
-     *
-     * @return int
-     */
-    public function getBedrooms()
-    {
-        return $this->bedrooms;
-    }
-
     /**
      * Set bathrooms
      *
@@ -291,30 +266,6 @@ class Gite
     }
 
     /**
-     * Set yearBuilt
-     *
-     * @param integer $yearBuilt
-     *
-     * @return Gite
-     */
-    public function setYearBuilt($yearBuilt)
-    {
-        $this->yearBuilt = $yearBuilt;
-
-        return $this;
-    }
-
-    /**
-     * Get yearBuilt
-     *
-     * @return int
-     */
-    public function getYearBuilt()
-    {
-        return $this->yearBuilt;
-    }
-
-    /**
      * Set size
      *
      * @param float $size
@@ -360,54 +311,6 @@ class Gite
     public function getRoomCount()
     {
         return $this->roomCount;
-    }
-
-    /**
-     * Set viewType
-     *
-     * @param string $viewType
-     *
-     * @return Gite
-     */
-    public function setViewType($viewType)
-    {
-        $this->viewType = $viewType;
-
-        return $this;
-    }
-
-    /**
-     * Get viewType
-     *
-     * @return string
-     */
-    public function getViewType()
-    {
-        return $this->viewType;
-    }
-
-    /**
-     * Set garden
-     *
-     * @param boolean $garden
-     *
-     * @return Gite
-     */
-    public function setGarden($garden)
-    {
-        $this->garden = $garden;
-
-        return $this;
-    }
-
-    /**
-     * Get garden
-     *
-     * @return bool
-     */
-    public function getGarden()
-    {
-        return $this->garden;
     }
 
     /**
