@@ -11,9 +11,9 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType,
     Symfony\Component\Form\Extension\Core\Type\TextType,
     Symfony\Component\Form\Extension\Core\Type\TextareaType,
     Symfony\Component\Form\Extension\Core\Type\ChoiceType,
-    Symfony\Component\Form\Extension\Core\Type\IntegerType,
-    Symfony\Component\Form\Extension\Core\Type\CollectionType,
-    Symfony\Component\Form\Extension\Core\Type\DateType;
+    Symfony\Component\Form\Extension\Core\Type\IntegerType;
+
+use Comur\ImageBundle\Form\Type\CroppableGalleryType;
 
 class GiteType extends AbstractType
 {
@@ -23,6 +23,7 @@ class GiteType extends AbstractType
    '  */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $myEntity = $builder->getForm()->getData();
         $builder
             ->add('address', TextType::class, array('label' => 'Adresse du gite'))
 
@@ -92,6 +93,29 @@ class GiteType extends AbstractType
             ->add('title', TextType::class, array('label' => 'Titre de l\'annonce'))
             ->add('description', TextareaType::class, array(
                 'label' => 'La description du gite'
+            ))
+            ->add('photos', CroppableGalleryType::class, array(
+                'uploadConfig' => array(
+                    'uploadUrl' => $myEntity->getUploadRootDir(),       // required - see explanation below (you can also put just a dir path)
+                    'webDir' => $myEntity->getUploadDir(),              // required - see explanation below (you can also put just a dir path)
+                    'fileExt' => '*.jpg;*.png;*.jpeg',    //optional
+                    'showLibrary' => true,                      //optional
+                    'generateFilename' => true          //optional
+                ),
+                'cropConfig' => array(
+                    'minWidth' => 588,
+                    'minHeight' => 300,
+                    'aspectRatio' => true,              //optional
+                    'cropRoute' => 'comur_api_crop',    //optional
+                    'forceResize' => false,             //optional
+                    'thumbs' => array(                  //optional
+                        array(
+                            'maxWidth' => 180,
+                            'maxHeight' => 400,
+                            'useAsFieldImage' => true  //optional
+                        )
+                    )
+                )
             ))
 
             ->add('reviews')

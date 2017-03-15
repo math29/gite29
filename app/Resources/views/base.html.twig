@@ -17,8 +17,10 @@
             {% block body %}{% endblock %}
             {{ include('footer.html.twig') }}
         </div>
-        <script src="{{ asset('front-assets/js/core.min.js') }}"></script>
-        <script src="{{ asset('front-assets/js/script.js') }}"></script>
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset('front-assets/node_modules/jquery/dist/jquery.js') }}"></script>
+            <script src="{{ asset('front-assets/js/core.min.js') }}"></script>
+            <script src="{{ asset('front-assets/js/script.js') }}"></script>
+        {% endblock %}
     </body>
 </html>

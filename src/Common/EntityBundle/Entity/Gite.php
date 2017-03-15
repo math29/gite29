@@ -106,9 +106,9 @@ class Gite
     private $description;
 
     /**
-     * @var image
+     * @var Array
      *
-     * @ORM\OneToMany(targetEntity="Photo", mappedBy="gite", cascade={"persist"})
+     * @ORM\Column(type="array", nullable=true)
      */
     private $photos;
 
@@ -369,40 +369,6 @@ class Gite
     }
 
     /**
-     * Add photo
-     *
-     * @param \Common\EntityBundle\Entity\Photo $photo
-     *
-     * @return Gite
-     */
-    public function addPhoto(\Common\EntityBundle\Entity\Photo $photo)
-    {
-        $this->photos[] = $photo;
-
-        return $this;
-    }
-
-    /**
-     * Remove photo
-     *
-     * @param \Common\EntityBundle\Entity\Photo $photo
-     */
-    public function removePhoto(\Common\EntityBundle\Entity\Photo $photo)
-    {
-        $this->photos->removeElement($photo);
-    }
-
-    /**
-     * Get photos
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPhotos()
-    {
-        return $this->photos;
-    }
-
-    /**
      * Set kind
      *
      * @param array $kind
@@ -520,5 +486,50 @@ class Gite
     public function getSpaces()
     {
         return $this->spaces;
+    }
+
+    public function getUploadRootDir()
+    {
+        // absolute path to your directory where images must be saved
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    public function getUploadDir()
+    {
+        return 'uploads/photos';
+    }
+
+    public function getAbsolutePath()
+    {
+        return null === $this->image ? null : $this->getUploadRootDir().'/'.$this->image;
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->image ? null : '/'.$this->getUploadDir().'/'.$this->image;
+    }
+
+    /**
+     * Set photos
+     *
+     * @param array $photos
+     *
+     * @return Gite
+     */
+    public function setPhotos($photos)
+    {
+        $this->photos = $photos;
+
+        return $this;
+    }
+
+    /**
+     * Get photos
+     *
+     * @return array
+     */
+    public function getPhotos()
+    {
+        return $this->photos;
     }
 }

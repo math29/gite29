@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {% include "ComurImageBundle:Form:croppable_image_modal.html.twig" %}
     <main class="page-content text-left">
         <!-- Section Title Breadcrumbs-->
         <section class="section-full">
@@ -113,4 +114,19 @@
     {{ form_start(form) }}
     {{ form_widget(form) }}
     {{ form_end(form) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
+    <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+    <script src="{{ asset('front-assets/node_modules/jquery-ui-dist/jquery-ui.js') }}"></script>
+    <script src="{{ asset('front-assets/node_modules/jquery.ui.widget/jquery.ui.widget.js') }}"></script>
+    <!-- The basic File Upload plugin -->
+    <script src="{{ asset('front-assets/node_modules/jquery.iframe-transport/jquery.iframe-transport.js') }}"></script>
+    <script src="{{ asset('bundles/comurimage/js/jquery.fileupload.js') }}"></script>
+
+    <script src="{{ asset('front-assets/node_modules/jcrop/jcrop.min.js') }}"></script>
 {% endblock %}
