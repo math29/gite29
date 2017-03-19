@@ -43,3 +43,7 @@ php bin/console server:start
 ###Release 0.0.4
 - Add search gite module
 - Update gite creation page
+
+###Release 0.0.5
+- Update gite creation page
+- Update gite search page
