@@ -1,14 +1,19 @@
 <div class="thumbnail thumbnail-3">
     <a href="{{ path('property-gite-single', {'id': gite.id}) }}" class="img-link">
-        <img src="front-assets/images/index-6.jpg" alt="" width="370" height="250">
+        {% if gite.photos|first %}
+            <img src="{{ gite.getUploadDir() ~ '/' ~ gite.owner.id ~ '/gallery/' ~ gite.photos|first }}" alt="" width="370" height="250">
+        {% else %}
+            <img src="front-assets/images/index-6.jpg" alt="" width="370" height="250">
+        {% endif %}
     </a>
+
     <div class="caption">
         <h4>
             <a href="{{ path('property-gite-single', {'id': gite.id}) }}" class="text-sushi">{{ gite.title }}</a>
         </h4>
         <span class="thumbnail-price h5">$X,XXX.XX/
-                      <span class="mon text-regular">month</span>
-                    </span>
+          <span class="mon text-regular">month</span>
+        </span>
         <ul class="describe-1">
             <li>
                 <span class="icon-square icon-sm">
@@ -34,10 +39,10 @@
         </ul>
         <ul class="describe-2">
             <li>
-                <span class="icon icon-sm icon-primary hotel-icon-05"></span>{{ gite.bedrooms }} bedrooms
+                <span class="icon icon-sm icon-primary hotel-icon-05"></span>{{ gite.beds }} bedrooms
             </li>
             <li>
-                <span class="icon icon-sm icon-primary hotel-icon-26"></span>{{ gite.garages }} parking
+                <span class="icon icon-sm icon-primary hotel-icon-26"></span>{{ gite.size }} superficie
             </li>
         </ul>
         <p class="text-abbey">{{ gite.description|length > 50 ? gite.description|slice(0, 50) ~ '...' : gite.description }}</p>

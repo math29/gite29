@@ -15,14 +15,24 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType,
 
 use Comur\ImageBundle\Form\Type\CroppableGalleryType;
 
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+
 class GiteType extends AbstractType
 {
+    private $securityContext;
+
+    public function __construct(TokenStorage $securityContext)
+    {
+        $this->securityContext = $securityContext;
+    }
+
     /**
      * {@inheritdoc}
 
    '  */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $user = $this->securityContext->getToken()->getUser();
         $myEntity = $builder->getForm()->getData();
         $builder
             ->add('address', TextType::class, array('label' => 'Adresse du gite'))
@@ -94,10 +104,11 @@ class GiteType extends AbstractType
             ->add('description', TextareaType::class, array(
                 'label' => 'La description du gite'
             ))
+
             ->add('photos', CroppableGalleryType::class, array(
                 'uploadConfig' => array(
-                    'uploadUrl' => $myEntity->getUploadRootDir(),       // required - see explanation below (you can also put just a dir path)
-                    'webDir' => $myEntity->getUploadDir(),              // required - see explanation below (you can also put just a dir path)
+                    'uploadUrl' => $myEntity->getUploadRootDir().'/'.strval($user->getId()),       // required - see explanation below (you can also put just a dir path)
+                    'webDir' => $myEntity->getUploadDir().'/'.strval($user->getId()),              // required - see explanation below (you can also put just a dir path)
                     'fileExt' => '*.jpg;*.png;*.jpeg',    //optional
                     'showLibrary' => true,                      //optional
                     'generateFilename' => true          //optional
