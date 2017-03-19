@@ -31,12 +31,16 @@ class DefaultController extends Controller
     public function newAction(Request $request)
     {
         $gite = new Gite();
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+
         $form = $this->createForm(GiteType::class, $gite);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $gite = $form->getData();
+            dump($user);
+            $gite->setOwner($user);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($gite);

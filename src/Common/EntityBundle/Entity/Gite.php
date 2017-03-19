@@ -2,6 +2,7 @@
 
 namespace Common\EntityBundle\Entity;
 
+use Common\EntityBundle\CommonEntityBundle;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -22,11 +23,73 @@ class Gite
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="owner", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="gites")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $owner;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="address", type="string", length=255)
+     */
+    private $address;
+
+    /**
+     * @var array
+     *
+     * @ORM\Column(name="kind", type="array", nullable=true)
+     */
+    private $kind;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="capacity", type="integer")
+     */
+    private $capacity;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="beds", type="integer")
+     */
+    private $beds;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="bathrooms", type="integer")
+     */
+    private $bathrooms;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="size", type="float", nullable=true)
+     */
+    private $size;
+
+    /**
+     * @var array
+     *
+     * @ORM\Column(name="features", type="array", nullable=true)
+     */
+    private $features;
+
+    /**
+     * @var array
+     *
+     * @ORM\Column(name="safety_features", type="array", nullable=true)
+     */
+    private $safety_features;
+
+    /**
+     * @var array
+     *
+     * @ORM\Column(name="spaces", type="array", nullable=true)
+     */
+    private $spaces;
 
     /**
      * @var string
@@ -38,72 +101,16 @@ class Gite
     /**
      * @var string
      *
-     * @ORM\Column(name="address", type="string", length=255)
-     */
-    private $address;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="bedrooms", type="integer")
-     */
-    private $bedrooms;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="bathrooms", type="integer", nullable=true)
-     */
-    private $bathrooms;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="garages", type="integer", nullable=true)
-     */
-    private $garages;
-
-    /**
-     * @var array
-     *
-     * @ORM\Column(name="features", type="array", nullable=true)
-     */
-    private $features;
-
-    /**
-     * @var float
-     *
-     * @ORM\Column(name="size", type="float", nullable=true)
-     */
-    private $size;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="roomCount", type="integer", nullable=true)
-     */
-    private $roomCount;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="viewType", type="string", length=255, nullable=true)
-     */
-    private $viewType;
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="garden", type="boolean", nullable=true)
-     */
-    private $garden;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="description", type="string", length=1500)
      */
     private $description;
+
+    /**
+     * @var Array
+     *
+     * @ORM\Column(type="array", nullable=true)
+     */
+    private $photos;
 
     /**
      * @var string
@@ -111,7 +118,6 @@ class Gite
      * @ORM\Column(name="reviews", type="string", length=255, nullable=true)
      */
     private $reviews;
-
 
     /**
      * Get id
@@ -124,27 +130,19 @@ class Gite
     }
 
     /**
-     * Set owner
-     *
-     * @param string $owner
-     *
-     * @return Gite
-     */
-    public function setOwner($owner)
-    {
-        $this->owner = $owner;
-
-        return $this;
-    }
-
-    /**
-     * Get owner
-     *
-     * @return string
+     * @return mixed
      */
     public function getOwner()
     {
         return $this->owner;
+    }
+
+    /**
+     * @param mixed $owner
+     */
+    public function setOwner(User $owner)
+    {
+        $this->owner = $owner;
     }
 
     /**
@@ -193,31 +191,6 @@ class Gite
     public function getAddress()
     {
         return $this->address;
-    }
-
-
-    /**
-     * Set bedrooms
-     *
-     * @param integer $bedrooms
-     *
-     * @return Gite
-     */
-    public function setBedrooms($bedrooms)
-    {
-        $this->bedrooms = $bedrooms;
-
-        return $this;
-    }
-
-    /**
-     * Get bedrooms
-     *
-     * @return int
-     */
-    public function getBedrooms()
-    {
-        return $this->bedrooms;
     }
 
     /**
@@ -293,30 +266,6 @@ class Gite
     }
 
     /**
-     * Set yearBuilt
-     *
-     * @param integer $yearBuilt
-     *
-     * @return Gite
-     */
-    public function setYearBuilt($yearBuilt)
-    {
-        $this->yearBuilt = $yearBuilt;
-
-        return $this;
-    }
-
-    /**
-     * Get yearBuilt
-     *
-     * @return int
-     */
-    public function getYearBuilt()
-    {
-        return $this->yearBuilt;
-    }
-
-    /**
      * Set size
      *
      * @param float $size
@@ -362,54 +311,6 @@ class Gite
     public function getRoomCount()
     {
         return $this->roomCount;
-    }
-
-    /**
-     * Set viewType
-     *
-     * @param string $viewType
-     *
-     * @return Gite
-     */
-    public function setViewType($viewType)
-    {
-        $this->viewType = $viewType;
-
-        return $this;
-    }
-
-    /**
-     * Get viewType
-     *
-     * @return string
-     */
-    public function getViewType()
-    {
-        return $this->viewType;
-    }
-
-    /**
-     * Set garden
-     *
-     * @param boolean $garden
-     *
-     * @return Gite
-     */
-    public function setGarden($garden)
-    {
-        $this->garden = $garden;
-
-        return $this;
-    }
-
-    /**
-     * Get garden
-     *
-     * @return bool
-     */
-    public function getGarden()
-    {
-        return $this->garden;
     }
 
     /**
@@ -459,5 +360,176 @@ class Gite
     {
         return $this->reviews;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->photos = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Set kind
+     *
+     * @param array $kind
+     *
+     * @return Gite
+     */
+    public function setKind($kind)
+    {
+        $this->kind = $kind;
+
+        return $this;
+    }
+
+    /**
+     * Get kind
+     *
+     * @return array
+     */
+    public function getKind()
+    {
+        return $this->kind;
+    }
+
+    /**
+     * Set capacity
+     *
+     * @param integer $capacity
+     *
+     * @return Gite
+     */
+    public function setCapacity($capacity)
+    {
+        $this->capacity = $capacity;
+
+        return $this;
+    }
+
+    /**
+     * Get capacity
+     *
+     * @return integer
+     */
+    public function getCapacity()
+    {
+        return $this->capacity;
+    }
+
+    /**
+     * Set beds
+     *
+     * @param integer $beds
+     *
+     * @return Gite
+     */
+    public function setBeds($beds)
+    {
+        $this->beds = $beds;
+
+        return $this;
+    }
+
+    /**
+     * Get beds
+     *
+     * @return integer
+     */
+    public function getBeds()
+    {
+        return $this->beds;
+    }
+
+    /**
+     * Set safetyFeatures
+     *
+     * @param array $safetyFeatures
+     *
+     * @return Gite
+     */
+    public function setSafetyFeatures($safetyFeatures)
+    {
+        $this->safety_features = $safetyFeatures;
+
+        return $this;
+    }
+
+    /**
+     * Get safetyFeatures
+     *
+     * @return array
+     */
+    public function getSafetyFeatures()
+    {
+        return $this->safety_features;
+    }
+
+    /**
+     * Set spaces
+     *
+     * @param array $spaces
+     *
+     * @return Gite
+     */
+    public function setSpaces($spaces)
+    {
+        $this->spaces = $spaces;
+
+        return $this;
+    }
+
+    /**
+     * Get spaces
+     *
+     * @return array
+     */
+    public function getSpaces()
+    {
+        return $this->spaces;
+    }
+
+    public function getUploadRootDir()
+    {
+        // absolute path to your directory where images must be saved
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    public function getUploadDir()
+    {
+        return 'uploads/photos';
+    }
+
+    public function getAbsolutePath()
+    {
+        return null === $this->image ? null : $this->getUploadRootDir().'/'.$this->image;
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->image ? null : '/'.$this->getUploadDir().'/'.$this->image;
+    }
+
+    /**
+     * Set photos
+     *
+     * @param array $photos
+     *
+     * @return Gite
+     */
+    public function setPhotos($photos)
+    {
+        $this->photos = $photos;
+
+        return $this;
+    }
+
+    /**
+     * Get photos
+     *
+     * @return array
+     */
+    public function getPhotos()
+    {
+        return $this->photos;
+    }
+}

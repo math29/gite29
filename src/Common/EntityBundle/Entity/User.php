@@ -6,6 +6,8 @@ namespace Common\EntityBundle\Entity;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * @ORM\Entity
  * @ORM\Table(name="fos_user")
@@ -19,17 +21,32 @@ class User extends BaseUser
      */
     protected $id;
 
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     /**
      * @var string
      *
      * @ORM\Column(name="phone", type="string", length=255, nullable=true)
      */
     private $phone;
+
+    /**
+     * Gites.
+     * @ORM\OneToMany(targetEntity="Gite", mappedBy="owner")
+     */
+    private $gites;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->gites = new ArrayCollection();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * @return string
@@ -45,5 +62,21 @@ class User extends BaseUser
     public function setPhone($phone)
     {
         $this->phone = $phone;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGites()
+    {
+        return $this->gites;
+    }
+
+    /**
+     * @param mixed $gites
+     */
+    public function setGites($gites)
+    {
+        $this->gites = $gites;
     }
 }

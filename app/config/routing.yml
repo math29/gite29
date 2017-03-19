@@ -11,7 +11,7 @@ front_home:
 front_gite:
     resource: "@FrontGiteBundle/Controller/"
     type:     annotation
-    prefix:   /gite
+    prefix:   /
 
 common_user:
     resource: "@CommonUserBundle/Controller/"
@@ -25,3 +25,10 @@ common_entity:
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+comur_image:
+    resource: "@ComurImageBundle/Resources/config/routing.yml"
+    prefix:   /
