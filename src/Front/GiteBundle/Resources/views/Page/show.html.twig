@@ -42,6 +42,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-8">
+                        {{ dump(gite) }}
                         <!-- Slick Carousel-->
                         <div data-arrows="true" data-loop="false"
                              data-dots="false" data-swipe="true"
@@ -49,26 +50,14 @@
                              data-child="#child-carousel" data-for=".thumbnail-carousel"
                              class="slick-slider carousel-parent"
                         >
-                            <a data-photo-swipe-item="" data-size="1200x743"
-                               href="{{ asset('front-assets/images/product-thumbnail-1.jpg') }}"
-                               class="item"
-                            >
-                                <img src="{{ asset('front-assets/images/product-thumbnail-1.jpg') }}" alt="" width="770" height="513"></a>
-                            <a data-photo-swipe-item="" data-size="1200x900" href="{{ asset('front-assets/images/product-thumbnail-1.jpg') }}" class="item">
-                                <img src="{{ asset('front-assets/images/product-thumbnail-1.jpg') }}" alt="" width="770" height="513">
-                            </a>
-                            <a data-photo-swipe-item="" data-size="1200x800" href="{{ asset('front-assets/images/product-thumbnail-1.jpg') }}" class="item">
-                                <img src="{{ asset('front-assets/images/product-thumbnail-1.jpg') }}" alt="" width="770" height="513">
-                            </a>
-                            <a data-photo-swipe-item="" data-size="1200x900" href="{{ asset('front-assets/images/product-thumbnail-1.jpg') }}" class="item">
-                                <img src="{{ asset('front-assets/images/product-thumbnail-1.jpg') }}" alt="" width="770" height="513">
-                            </a>
-                            <a data-photo-swipe-item="" data-size="1200x905" href="{{ asset('front-assets/images/product-thumbnail-1.jpg') }}" class="item">
-                                <img src="{{ asset('front-assets/images/product-thumbnail-1.jpg') }}" alt="" width="770" height="513">
-                            </a>
-                            <a data-photo-swipe-item="" data-size="1200x803" href="{{ asset('front-assets/images/product-thumbnail-1.jpg') }}" class="item">
-                                <img src="{{ asset('front-assets/images/product-thumbnail-1.jpg') }}" alt="" width="770" height="513">
-                            </a>
+                            {% for photo in gite.photos %}
+                                <a data-photo-swipe-item="" data-size="1200x743"
+                                   href="{{ photo|thumb(1200, 743) }}"
+                                   class="item"
+                                >
+                                    <img src="{{ photo|thumb(770, 513) }}" alt="" width="770" height="513">
+                                </a>
+                            {% endfor %}
                         </div>
                         <div id="child-carousel" data-for=".carousel-parent" data-arrows="true" data-loop="false" data-dots="false" data-swipe="true" data-items="2" data-xs-items="4" data-sm-items="4" data-md-items="5" data-lg-items="5" data-slide-to-scroll="1" class="slick-slider thumbnail-carousel">
                             <div class="item">
