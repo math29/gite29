@@ -18,6 +18,22 @@ class CreateGiteFlow extends FormFlow {
                 'form_type' => 'Common\EntityBundle\Form\DetailsGiteType'
             ),
             array(
+                'label' => 'Adresse',
+                'form_type' => 'Common\EntityBundle\Form\AddressGiteType'
+            ),
+            array(
+                'label' => 'Fonctionalités',
+                'form_type' => 'Common\EntityBundle\Form\FeaturesGiteType'
+            ),
+            array(
+                'label' => 'Photos',
+                'form_type' => 'Common\EntityBundle\Form\PhotosGiteType'
+            ),
+            array(
+                'label' => 'Description',
+                'form_type' => 'Common\EntityBundle\Form\DescriptionGiteType'
+            ),
+            array(
                 'label' => 'confirmation',
             ),
         );

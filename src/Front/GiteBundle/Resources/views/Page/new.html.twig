@@ -14,9 +14,52 @@
                     {{ form_errors(form) }}
 
                     {% if flow.getCurrentStepNumber() == 1 %}
-                        <div>
-                            When selecting four wheels you have to choose the engine in the next step.<br />
-                            {{ form_row(form.kind) }}
+                        <div class="col-sm-12">
+                            <p>Dans un premier temps, veuillez spécifier le type de bien que vous mettez en location.</p><br />
+                            <div class="form-group">
+                                {{ form_row(form.kind, {'attr': {'placeholder' : 'Nombre Salle de bains', 'class': 'form-control'}}) }}
+                                {{ form_errors(form.kind) }}
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    {% if flow.getCurrentStepNumber() == 2 %}
+                        <div class="col-sm-6 col-md-6 col-xs-12">
+                            <div class="form-group">
+                                {{ form_row(form.bathrooms, {'attr': {'placeholder' : 'Nombre Salle de bains', 'class': 'form-control'}}) }}
+                                {{ form_errors(form.bathrooms) }}
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-xs-12">
+                            <div class="form-group">
+                                {{ form_row(form.capacity, {'attr': {'placeholder' : 'Nombre de vacanciers pouvant etre accueillis', 'class': 'form-control'}}) }}
+                                {{ form_errors(form.capacity) }}
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-xs-12">
+                            <div class="form-group">
+                                {{ form_row(form.beds, {'attr': {'placeholder' : 'Nombre de lits', 'class': 'form-control'}}) }}
+                                {{ form_errors(form.beds) }}
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-xs-12">
+                            <div class="form-group">
+                                {{ form_row(form.size, {'attr': {'placeholder' : 'Superficie totale du bien', 'class': 'form-control'}}) }}
+                                {{ form_errors(form.size) }}
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    {% if flow.getCurrentStepNumber() == 3 %}
+                        <div class="col-xs-12 col-sm-12">
+                            <!--Google map search-->
+                            <div class="form-group">
+                                <label for="rd-google-map-address" class="form-label rd-input-label">Address</label>
+                                <div class="form-inline-flex-md">
+                                    {{ form_widget(form.address, {'attr': {'placeholder': 'Adresse du bien', 'autocomplete': 'off', 'class': 'form-control form-control-has-validation'}}) }}
+                                    {{ form_errors(form.address) }}
+                                </div>
+                            </div>
                         </div>
                     {% endif %}
 
@@ -102,28 +145,7 @@
                                     </div>
                                 </div>
                         </div>
-                        <div class="col-xs-12 col-sm-6">
-                            <!--Google map search-->
-                            <div class="form-group">
-                                <label for="rd-google-map-address" class="form-label rd-input-label">Address</label>
-                                <div class="form-inline-flex-md">
-                                    {{ form_widget(form.address, {'attr': {'id': 'rd-google-map-address', 'name': 'address', 'data-contraints': '@Required', 'placeholder': '', 'autocomplete': 'off', 'class': 'form-control form-control-has-validation'}}) }}
 
-                                    <!-- <input id="rd-google-map-address" id="form_address" type="text" name="form[address]" data-constraints="@Required" placeholder="" autocomplete="off" class="form-control form-control-has-validation">-->
-                                    <!-- <a id="rd-google-map-address-submit" href="#" class="btn btn-primary btn-sm btn-min-width-sm">Find Address</a> -->
-                                </div>
-                            </div>
-                            <!-- RD Google Map -->
-                            <div class="rd-google-map">
-                                <div id="rd-google-map" data-zoom="9" data-x="-4.074548" data-y="48.282684" data-styles="[{&quot;featureType&quot;:&quot;administrative&quot;,&quot;elementType&quot;:&quot;labels.text.fill&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#444444&quot;}]},{&quot;featureType&quot;:&quot;landscape&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#f2f2f2&quot;}]},{&quot;featureType&quot;:&quot;poi&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;off&quot;}]},{&quot;featureType&quot;:&quot;poi.business&quot;,&quot;elementType&quot;:&quot;geometry.fill&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;on&quot;}]},{&quot;featureType&quot;:&quot;road&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:-100},{&quot;lightness&quot;:45}]},{&quot;featureType&quot;:&quot;road.highway&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;simplified&quot;}]},{&quot;featureType&quot;:&quot;road.arterial&quot;,&quot;elementType&quot;:&quot;labels.icon&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;off&quot;}]},{&quot;featureType&quot;:&quot;transit&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;off&quot;}]},{&quot;featureType&quot;:&quot;water&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#b4d4e1&quot;},{&quot;visibility&quot;:&quot;on&quot;}]}]" class="rd-google-map__model-2">
-                                    <ul class="map_locations">
-                                        <li data-x="-4.074548" data-y="48.282684">
-                                            <p>Bretagne</p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
                         <div class="col-xs-12 col-sm-12 offset-9">
                             <h4 class="border-bottom">Additional Details</h4>
                             <div class="details-wrap">
@@ -174,4 +196,5 @@
     <script src="{{ asset('bundles/comurimage/js/jquery.fileupload.js') }}"></script>
 
     <script src="{{ asset('front-assets/node_modules/jcrop/jcrop.min.js') }}"></script>
+
 {% endblock %}

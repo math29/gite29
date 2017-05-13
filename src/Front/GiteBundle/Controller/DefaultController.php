@@ -11,6 +11,12 @@ use Symfony\Component\HttpFoundation\Request;
 
 use Common\EntityBundle\Entity\Gite;
 
+use Ivory\GoogleMap\Service\Geocoder\GeocoderService;
+use Http\Adapter\Guzzle6\Client;
+use Http\Message\MessageFactory\GuzzleMessageFactory;
+use Ivory\GoogleMap\Service\Geocoder\Request\GeocoderAddressRequest;
+
+
 class DefaultController extends Controller
 {
     /**
@@ -38,6 +44,18 @@ class DefaultController extends Controller
 
         $form->handleRequest($request);
 
+        /* Google maps */
+//        $map = new Map();
+//        $map->setCenter(new Coordinate(48.282684, -4.074548));
+//        $map->setMapOption('zoom', 9);
+//
+//        $map->setStylesheetOptions(array(
+//            'width'  => '800px',
+//            'height' => '400px',
+//        ));
+
+
+
         if ($form->isSubmitted() && $form->isValid()) {
             $flow->saveCurrentStepData($form);
 
@@ -46,8 +64,17 @@ class DefaultController extends Controller
                 $form = $flow->createForm();
             } else {
                 // flow finished
-                // $gite = $form->getData();
+                $gite = $form->getData();
                 $gite->setOwner($user);
+
+                /* Get Latitude and longitude of given address */
+                $geocoder = new GeocoderService(new Client(), new GuzzleMessageFactory());
+                $request = new GeocoderAddressRequest($gite->getAddress());
+                $results = $geocoder->geocode($request)->getResults();
+
+                if(count($results) > 0) {
+                    $gite->setGeometry($results[0]->getGeometry());
+                }
 
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($gite);

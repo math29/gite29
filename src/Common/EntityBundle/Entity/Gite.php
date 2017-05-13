@@ -120,6 +120,13 @@ class Gite
     private $reviews;
 
     /**
+     * @var object
+     *
+     * @ORM\Column(name="geometry", type="object", nullable=true)
+     */
+    private $geometry;
+
+    /**
      * Get id
      *
      * @return int
@@ -536,5 +543,21 @@ class Gite
     public function getPhotos()
     {
         return $this->photos;
+    }
+
+    /**
+     * @return object
+     */
+    public function getGeometry()
+    {
+        return $this->geometry;
+    }
+
+    /**
+     * @param object $geometry
+     */
+    public function setGeometry($geometry)
+    {
+        $this->geometry = $geometry;
     }
 }

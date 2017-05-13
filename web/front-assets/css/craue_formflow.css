@@ -1,7 +1,8 @@
 /******************************/
 /* Steps side bar */
 /******************************/
-.craue_formflow_steplist .craue_formflow_done_step {
+.craue_formflow_steplist .craue_formflow_done_step,
+.craue_formflow_steplist .craue_formflow_current_step {
     font-weight: bold;
 
 }

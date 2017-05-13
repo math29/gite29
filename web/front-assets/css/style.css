@@ -39626,7 +39626,7 @@ p+.accordion-custom {
 .select2-container--bootstrap .select2-selection--multiple .select2-selection__rendered {
   box-sizing: border-box;
   display: block;
-  line-height: 24;
+  line-height: 3;
   list-style: none;
   margin: 0;
   overflow: hidden;
