@@ -24,6 +24,8 @@ class AppKernel extends Kernel
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new JMS\TranslationBundle\JMSTranslationBundle(),
             new Comur\ImageBundle\ComurImageBundle(),
+            new Craue\FormFlowBundle\CraueFormFlowBundle(),
+            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

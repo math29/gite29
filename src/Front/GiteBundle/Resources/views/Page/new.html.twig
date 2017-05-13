@@ -1,7 +1,52 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('front-assets/css/craue_formflow.css') }}">
+{% endblock %}
+
 {% block body %}
-    {% include "ComurImageBundle:Form:croppable_image_modal.html.twig" with {'include_bootstrap': false} %}
+
+    <section class="section-md text-left">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-8 pull-md-right">
+                    {{ form_start(form) }}
+                    {{ form_errors(form) }}
+
+                    {% if flow.getCurrentStepNumber() == 1 %}
+                        <div>
+                            When selecting four wheels you have to choose the engine in the next step.<br />
+                            {{ form_row(form.kind) }}
+                        </div>
+                    {% endif %}
+
+                    {{ form_rest(form) }}
+
+                    {% include '@CraueFormFlow/FormFlow/buttons.html.twig' with {
+                    craue_formflow_button_class_last: 'btn btn-sushi btn-sm btn-shadow-1 btn-xs craue_formflow_button',
+                    craue_formflow_button_class_back: 'btn btn-sushi btn-sm btn-shadow-1 btn-xs craue_formflow_button',
+                    craue_formflow_button_class_reset: 'btn btn-primary btn-sm btn-shadow-1 craue_formflow_button',
+                    craue_formflow_button_label_finish: 'créer',
+                    craue_formflow_button_label_reset: 'réinitialiser',
+                    craue_formflow_button_label_next: 'suivant',
+                    craue_formflow_button_label_back: 'précédent'
+                    } %}
+                    {{ form_end(form) }}
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-4 pull-md-left">
+                    <!-- Sidebar-->
+                    <div class="sidebar sidebar-mod-2">
+                        <div class="sidebar-module">
+                            <h4>Etapes</h4>
+                            {% include '@CraueFormFlow/FormFlow/stepList.html.twig' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {#{% include "ComurImageBundle:Form:croppable_image_modal.html.twig" with {'include_bootstrap': false} %}
     <main class="page-content text-left">
         <!-- Section Title Breadcrumbs-->
         <section class="section-full">
@@ -113,7 +158,7 @@
     </main>
     {{ form_start(form) }}
     {{ form_widget(form) }}
-    {{ form_end(form) }}
+    {{ form_end(form) }}#}
 {% endblock %}
 
 {% block javascripts %}

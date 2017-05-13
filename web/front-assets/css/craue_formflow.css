@@ -1,0 +1,21 @@
+/******************************/
+/* Steps side bar */
+/******************************/
+.craue_formflow_steplist .craue_formflow_done_step {
+    font-weight: bold;
+
+}
+
+.craue_formflow_steplist .craue_formflow_done_step:after {
+    font-family: FontAwesome;
+    content: "\f00c";
+    margin-left: 3px;
+}
+
+/*********************************/
+/* Button classes */
+/*********************************/
+
+.craue_formflow_button {
+    margin: 20px 10px 0 0;
+}

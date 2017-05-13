@@ -9,8 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
 
 use Symfony\Component\HttpFoundation\Request;
 
-use Common\EntityBundle\Entity\Gite,
-    Common\EntityBundle\Form\GiteType;
+use Common\EntityBundle\Entity\Gite;
 
 class DefaultController extends Controller
 {
@@ -32,25 +31,37 @@ class DefaultController extends Controller
     {
         $gite = new Gite();
         $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        $flow = $this->get('common.form.flow.create_gite');
+        $flow->bind($gite);
 
-        $form = $this->createForm(GiteType::class, $gite);
+        $form = $flow->createForm();
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $gite = $form->getData();
-            dump($user);
-            $gite->setOwner($user);
+            $flow->saveCurrentStepData($form);
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($gite);
-            $em->flush();
+            if ($flow->nextStep()) {
+                // form for the next step
+                $form = $flow->createForm();
+            } else {
+                // flow finished
+                // $gite = $form->getData();
+                $gite->setOwner($user);
 
-            return $this->redirectToRoute('home');
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($gite);
+                $em->flush();
+
+                $flow->reset(); // remove step data from the session
+
+                return $this->redirectToRoute('home'); // redirect when done
+            }
         }
 
         return $this->render('FrontGiteBundle:Page:new.html.twig', array(
             'form' => $form->createView(),
+            'flow' => $flow
         ));
     }
 }

@@ -45,21 +45,21 @@ class Gite
     /**
      * @var int
      *
-     * @ORM\Column(name="capacity", type="integer")
+     * @ORM\Column(name="capacity", type="integer", nullable=true)
      */
     private $capacity;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="beds", type="integer")
+     * @ORM\Column(name="beds", type="integer", nullable=true)
      */
     private $beds;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="bathrooms", type="integer")
+     * @ORM\Column(name="bathrooms", type="integer", nullable=true)
      */
     private $bathrooms;
 
@@ -507,6 +507,11 @@ class Gite
     public function getWebPath()
     {
         return null === $this->image ? null : '/'.$this->getUploadDir().'/'.$this->image;
+    }
+
+    public function getGalleryPath()
+    {
+        return $this->getUploadDir() . '/' . $this->getOwner()->getId() . '/gallery';
     }
 
     /**
