@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block body %}
+    {% include "ComurImageBundle:Form:croppable_image_modal.html.twig" with {'include_bootstrap': false} %}
 
     <section class="section-md text-left">
         <div class="container">
@@ -63,6 +64,46 @@
                         </div>
                     {% endif %}
 
+                    {% if flow.getCurrentStepNumber() == 4 %}
+                        <div class="col-sm-12 col-md-12 col-xs-12">
+                            <div class="form-group">
+                                {{ form_row(form.features, {'attr': {'placeholder' : 'Fonctionalités/équipements sur place', 'class': 'form-control'}}) }}
+                                {{ form_errors(form.features) }}
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-xs-12">
+                            <div class="form-group">
+                                {{ form_row(form.safety_features, {'attr': {'placeholder' : 'Equipements de sécurité', 'class': 'form-control'}}) }}
+                                {{ form_errors(form.safety_features) }}
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-xs-12">
+                            <div class="form-group">
+                                {{ form_row(form.spaces, {'attr': {'placeholder' : 'Espaces particuliers', 'class': 'form-control'}}) }}
+                                {{ form_errors(form.spaces) }}
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    {% if flow.getCurrentStepNumber() == 5 %}
+
+                    {% endif %}
+
+                    {% if flow.getCurrentStepNumber() == 6 %}
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            {{ form_row(form.title, {'attr': {'placeholder' : 'Le title', 'class': 'form-control'}}) }}
+                            {{ form_errors(form.title) }}
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            {{ form_row(form.description, {'attr': {'placeholder' : 'Votre description', 'class': 'form-control min-height'}}) }}
+                            {{ form_errors(form.description) }}
+                        </div>
+                    </div>
+                    {% endif %}
+
                     {{ form_rest(form) }}
 
                     {% include '@CraueFormFlow/FormFlow/buttons.html.twig' with {
@@ -89,98 +130,6 @@
             </div>
         </div>
     </section>
-    {#{% include "ComurImageBundle:Form:croppable_image_modal.html.twig" with {'include_bootstrap': false} %}
-    <main class="page-content text-left">
-        <!-- Section Title Breadcrumbs-->
-        <section class="section-full">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <h1>Submit Property</h1>
-                        <p></p>
-                        <ol class="breadcrumb">
-                            <li><a href="{{ path('home') }}">Home</a></li>
-                            <li class="active">Inscrire son gite</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="section-md">
-            <div class="container">
-                <h2>Inscription de votre gite</h2>
-                <hr>
-                <div class="row submit-form text-left">
-                    {{ form_start(form) }}
-                    {{ form_errors(form) }}
-                        <div class="col-sm-6">
-                                <div class="form-group">
-                                    {{ form_row(form.title, {'attr': {'placeholder' : 'Le title', 'class': 'form-control'}}) }}
-                                    {{ form_errors(form.title) }}
-                                </div>
-                                <div class="form-group">
-                                    {{ form_row(form.description, {'attr': {'placeholder' : 'Votre description', 'class': 'form-control min-height'}}) }}
-                                    {{ form_errors(form.description) }}
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            {{ form_row(form.bathrooms, {'attr': {'placeholder' : 'Nombre Salle de bains', 'class': 'form-control'}}) }}
-                                            {{ form_errors(form.bathrooms) }}
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="select-6" class="form-label">Garages</label>
-                                            <select id="select-6" data-minimum-results-for-search="Infinity" class="form-control select-filter">
-                                                <option value="Any" selected>Any</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                        </div>
-
-                        <div class="col-xs-12 col-sm-12 offset-9">
-                            <h4 class="border-bottom">Additional Details</h4>
-                            <div class="details-wrap">
-                                <div class="form-group input-width-1">
-                                    <label for="prop-title1" class="form-label">Title</label>
-                                    <input id="prop-title1" type="text" name="title" placeholder="" class="form-control">
-                                </div>
-                                <div class="form-group input-width-2">
-                                    <label for="description1" class="form-label">Value</label>
-                                    <input id="description1" type="text" name="title" placeholder="" class="form-control">
-                                </div><span class="icon mdi mdi-close preffix-1 cursor-pointer"></span>
-                            </div>
-                            <div class="details-wrap">
-                                <div class="form-group input-width-1">
-                                    <label for="prop-title2" class="form-label">Title</label>
-                                    <input id="prop-title2" type="text" name="title" placeholder="" class="form-control">
-                                </div>
-                                <div class="form-group input-width-2">
-                                    <label for="description2" class="form-label">Value</label>
-                                    <input id="description2" type="text" name="title" placeholder="" class="form-control">
-                                </div><span class="icon mdi mdi-close preffix-1 cursor-pointer"></span>
-                                <button type="submit" class="btn btn-sm btn-primary-transparent btn-min-width-mod-3">add detail row</button>
-                            </div>
-                        </div>
-                        <div class="col-xs-12 offset-8">
-                            {{ form_row(form.submit, { 'label': 'Submit', attr: {'class': 'btn btn-sm btn-sushi btn-min-width-sm' }}) }}
-                        </div>
-                    {{ form_end(form) }}
-                </div>
-            </div>
-        </section>
-    </main>
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    {{ form_end(form) }}#}
 {% endblock %}
 
 {% block javascripts %}
