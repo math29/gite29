@@ -45,21 +45,21 @@ class Gite
     /**
      * @var int
      *
-     * @ORM\Column(name="capacity", type="integer")
+     * @ORM\Column(name="capacity", type="integer", nullable=true)
      */
     private $capacity;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="beds", type="integer")
+     * @ORM\Column(name="beds", type="integer", nullable=true)
      */
     private $beds;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="bathrooms", type="integer")
+     * @ORM\Column(name="bathrooms", type="integer", nullable=true)
      */
     private $bathrooms;
 
@@ -118,6 +118,13 @@ class Gite
      * @ORM\Column(name="reviews", type="string", length=255, nullable=true)
      */
     private $reviews;
+
+    /**
+     * @var object
+     *
+     * @ORM\Column(name="geometry", type="object", nullable=true)
+     */
+    private $geometry;
 
     /**
      * Get id
@@ -509,6 +516,11 @@ class Gite
         return null === $this->image ? null : '/'.$this->getUploadDir().'/'.$this->image;
     }
 
+    public function getGalleryPath()
+    {
+        return $this->getUploadDir() . '/' . $this->getOwner()->getId() . '/gallery';
+    }
+
     /**
      * Set photos
      *
@@ -531,5 +543,21 @@ class Gite
     public function getPhotos()
     {
         return $this->photos;
+    }
+
+    /**
+     * @return object
+     */
+    public function getGeometry()
+    {
+        return $this->geometry;
+    }
+
+    /**
+     * @param object $geometry
+     */
+    public function setGeometry($geometry)
+    {
+        $this->geometry = $geometry;
     }
 }

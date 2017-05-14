@@ -9,8 +9,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
 
 use Symfony\Component\HttpFoundation\Request;
 
-use Common\EntityBundle\Entity\Gite,
-    Common\EntityBundle\Form\GiteType;
+use Common\EntityBundle\Entity\Gite;
+
+use Ivory\GoogleMap\Service\Geocoder\GeocoderService;
+use Http\Adapter\Guzzle6\Client;
+use Http\Message\MessageFactory\GuzzleMessageFactory;
+use Ivory\GoogleMap\Service\Geocoder\Request\GeocoderAddressRequest;
+
 
 class DefaultController extends Controller
 {
@@ -32,25 +37,58 @@ class DefaultController extends Controller
     {
         $gite = new Gite();
         $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        $flow = $this->get('common.form.flow.create_gite');
+        $flow->bind($gite);
 
-        $form = $this->createForm(GiteType::class, $gite);
+        $form = $flow->createForm();
 
         $form->handleRequest($request);
 
+        /* Google maps */
+//        $map = new Map();
+//        $map->setCenter(new Coordinate(48.282684, -4.074548));
+//        $map->setMapOption('zoom', 9);
+//
+//        $map->setStylesheetOptions(array(
+//            'width'  => '800px',
+//            'height' => '400px',
+//        ));
+
+
+
         if ($form->isSubmitted() && $form->isValid()) {
-            $gite = $form->getData();
-            dump($user);
-            $gite->setOwner($user);
+            $flow->saveCurrentStepData($form);
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($gite);
-            $em->flush();
+            if ($flow->nextStep()) {
+                // form for the next step
+                $form = $flow->createForm();
+            } else {
+                // flow finished
+                $gite = $form->getData();
+                $gite->setOwner($user);
 
-            return $this->redirectToRoute('home');
+                /* Get Latitude and longitude of given address */
+                $geocoder = new GeocoderService(new Client(), new GuzzleMessageFactory());
+                $request = new GeocoderAddressRequest($gite->getAddress());
+                $results = $geocoder->geocode($request)->getResults();
+
+                if(count($results) > 0) {
+                    $gite->setGeometry($results[0]->getGeometry());
+                }
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($gite);
+                $em->flush();
+
+                $flow->reset(); // remove step data from the session
+
+                return $this->redirectToRoute('home'); // redirect when done
+            }
         }
 
         return $this->render('FrontGiteBundle:Page:new.html.twig', array(
             'form' => $form->createView(),
+            'flow' => $flow
         ));
     }
 }

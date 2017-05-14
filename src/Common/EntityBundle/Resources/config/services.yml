@@ -1,6 +1,10 @@
 services:
-    form.gitetype:
-        class: Common\EntityBundle\Form\GiteType
+    form.photosgitetype:
+        class: Common\EntityBundle\Form\PhotosGiteType
         arguments:
             - "@security.token_storage"
         tags: [{ name: form.type }]
+
+    common.form.flow.create_gite:
+        class: Common\EntityBundle\Form\CreateGiteFlow
+        parent: craue.form.flow
