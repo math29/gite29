@@ -47,3 +47,8 @@ php bin/console server:start
 ###Release 0.0.5
 - Update gite creation page
 - Update gite search page
+
+###Release 0.0.6
+- Update gite creation page to be a creation flow with craue/formflow-bundle
+- Update creation flow to use egeloen/google-map-bundle with autocomplete and geocoder functionalities
+- Update gite entity and gite form parameters
