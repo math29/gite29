@@ -20,20 +20,21 @@ class FeaturesGiteType extends AbstractType
                 'required' => false,
                 'multiple' => true,
                 'choices'  => array(
-                    'BASE_PRODUCTS' => 'Produits de base (Serviettes, draps, savon et papier toilette)',
-                    'WIFI' => 'Wi-Fi',
-                    'Shampoo' => 'Shampoing',
-                    'WARDROBE' => 'Penderie/Commode',
-                    'TV' => 'Télévision',
-                    'HEATING' => 'Chauffage',
-                    'AC' => 'Climatisation',
-                    'BREAKFAST' => 'Petit déjeuner, café, thé',
-                    'DESK' => 'Bureau/Espace de travail',
-                    'FIREPLACE' => 'Cheminée',
-                    'IRON' => 'Fer à repasser',
-                    'HAIR_DRYER' => 'Sèche-cheveux',
-                    'PETS' => 'Animaux domestiques sur place',
-                    'PRIVATE_ENTER' => 'Entrée privée'
+                    'Produits de base (Serviettes, draps, savon et papier toilette)' => 'BASE_PRODUCTS',
+                    'Wi-Fi' => 'WIFI',
+                    'Shampoing' => 'SHAMPOO',
+                    'Penderie/Commode' => 'WARDROBE',
+                    'Télévision' => 'TV',
+                    'Chauffage' => 'HEATING',
+                    'Climatisation' => 'AC',
+                    'Petit déjeuner, café, thé' => 'BREAKFAST',
+                    'Bureau/Espace de travail' => 'DESK',
+                    'Cheminée' => 'FIREPLACE',
+                    'Fer à repasser' => 'IRON',
+                    'Sèche-cheveux' => 'HAIR_DRYER',
+                    'Animaux domestiques sur place' => 'PETS',
+                    'Lave-linge' => 'WACH_MACHINE',
+                    'Sèche-linge' => 'DRY_MACHINE',
                 )
             ))
             ->add('safety_features', ChoiceType::class, array(
@@ -41,12 +42,12 @@ class FeaturesGiteType extends AbstractType
                 'required' => false,
                 'multiple' => true,
                 'choices'  => array(
-                    'SMOKE_CHECKER' => 'Détecteur de fumée',
-                    'CARBONE_CHECKER' => 'Détecteur de monoxyde de carbone',
-                    'FIRST_HELP_KIT' => 'Kit de premiers secours',
-                    'SECURITY_LIST' => 'Fiche de sécurité',
-                    'EXTINGUISHER' => 'Extincteur',
-                    'ROOM_LOCK' => 'Porte de la chambre avec verrou'
+                    'Détecteur de fumée' => 'SMOKE_CHECKER',
+                    'Détecteur de monoxyde de carbone' => 'CARBONE_CHECKER',
+                    'Kit de premiers secours' => 'FIRST_HELP_KIT',
+                    'Fiche de sécurité' => 'SECURITY_LIST',
+                    'Extincteur' => 'EXTINGUISHER',
+                    'Porte de la chambre avec verrou' => 'ROOM_LOCK'
                 )
             ))
             ->add('spaces', ChoiceType::class, array(
@@ -54,15 +55,14 @@ class FeaturesGiteType extends AbstractType
                 'required' => false,
                 'multiple' => true,
                 'choices'  => array(
-                    'KITCHEN' => 'Cuisine',
-                    'WACH_MACHINE' => 'Lave-linge',
-                    'DRY_MACHINE' => 'Sèche-linge',
-                    'PARKING' => 'Parking',
-                    'GARAGE' => 'Garage',
-                    'ELEVATOR' => 'Ascenseur',
-                    'SWIMMING_POOL' => 'Piscine',
-                    'JACUZZI' => 'Jacuzzi',
-                    'GARDEN' => 'Jardin'
+                    'Cuisine séparée' => 'KITCHEN',
+                    'Parking' => 'PARKING',
+                    'Garage' => 'GARAGE',
+                    'Ascenseur' => 'ELEVATOR',
+                    'Piscine' => 'SWIMMING_POOL',
+                    'Jacuzzi' => 'JACUZZI',
+                    'Jardin' => 'GARDEN',
+                    'Entrée privée' => 'PRIVATE_ENTER'
                 )
             ));
     }
