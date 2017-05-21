@@ -45,6 +45,12 @@
                         </div>
                         <div class="col-sm-6 col-md-6 col-xs-12">
                             <div class="form-group">
+                                {{ form_row(form.bedrooms, {'attr': {'placeholder' : 'Nombre de chambres', 'class': 'form-control'}}) }}
+                                {{ form_errors(form.bedrooms) }}
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-xs-12">
+                            <div class="form-group">
                                 {{ form_row(form.size, {'attr': {'placeholder' : 'Superficie totale du bien', 'class': 'form-control'}}) }}
                                 {{ form_errors(form.size) }}
                             </div>
@@ -90,18 +96,27 @@
                     {% endif %}
 
                     {% if flow.getCurrentStepNumber() == 6 %}
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            {{ form_row(form.title, {'attr': {'placeholder' : 'Le title', 'class': 'form-control'}}) }}
-                            {{ form_errors(form.title) }}
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                {{ form_row(form.title, {'attr': {'placeholder' : 'Le title', 'class': 'form-control'}}) }}
+                                {{ form_errors(form.title) }}
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            {{ form_row(form.description, {'attr': {'placeholder' : 'Votre description', 'class': 'form-control min-height'}}) }}
-                            {{ form_errors(form.description) }}
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                {{ form_row(form.description, {'attr': {'placeholder' : 'Votre description', 'class': 'form-control min-height'}}) }}
+                                {{ form_errors(form.description) }}
+                            </div>
                         </div>
-                    </div>
+                    {% endif %}
+
+                    {% if flow.getCurrentStepNumber() == 7 %}
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                {{ form_row(form.airbnb, {'attr': {'placeholder' : 'Lien vers votre airbnb', 'class': 'form-control'}}) }}
+                                {{ form_errors(form.airbnb) }}
+                            </div>
+                        </div>
                     {% endif %}
 
                     {{ form_rest(form) }}

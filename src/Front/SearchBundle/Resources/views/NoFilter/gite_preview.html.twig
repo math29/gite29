@@ -11,10 +11,14 @@
         <h4>
             <a href="{{ path('property-gite-single', {'id': gite.id}) }}" class="text-sushi">{{ gite.title }}</a>
         </h4>
-        <span class="thumbnail-price h5">$X,XXX.XX/
+        {#<span class="thumbnail-price h5">$X,XXX.XX/
           <span class="mon text-regular">month</span>
-        </span>
+        </span>#}
         <ul class="describe-1">
+            <li>
+                <span class="icon-sm icon-primary fa-home fa-2x"></span>
+                {{ gite.getPrettyKind() }}
+            </li>
             <li>
                 <span class="icon-square icon-sm">
                   <svg x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100"
@@ -33,16 +37,13 @@
                   </svg>
                 </span>{{ gite.size }} m<sup>2</sup>
             </li>
-            <li>
-                <span class="icon icon-sm icon-primary hotel-icon-10"></span>{{ gite.bathrooms }} bathrooms
-            </li>
         </ul>
         <ul class="describe-2">
             <li>
                 <span class="icon icon-sm icon-primary hotel-icon-05"></span>{{ gite.beds }} bedrooms
             </li>
             <li>
-                <span class="icon icon-sm icon-primary hotel-icon-26"></span>{{ gite.size }} superficie
+                <span class="icon icon-sm icon-primary hotel-icon-10"></span>{{ gite.bathrooms }} bathrooms
             </li>
         </ul>
         <p class="text-abbey">{{ gite.description|length > 50 ? gite.description|slice(0, 50) ~ '...' : gite.description }}</p>

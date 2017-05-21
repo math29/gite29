@@ -16,6 +16,7 @@ class DetailsGiteType extends AbstractType
         $builder
             ->add('capacity', IntegerType::class, array('label' => 'Nombre de vacanciers pouvant etre accueillis', 'required' => false))
             ->add('beds', IntegerType::class, array('label' => 'Nombre de lits', 'required' => false))
+            ->add('bedrooms', IntegerType::class, array('label' => 'Nombre de chambres', 'required' => false))
             ->add('bathrooms', IntegerType::class, array('label' => 'Nombre de salle de bain', 'required' => false))
             ->add('size', IntegerType::class, array('label' => 'Superficie du gite', 'required' => false));
     }

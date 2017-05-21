@@ -59,6 +59,13 @@ class Gite
     /**
      * @var int
      *
+     * @ORM\Column(name="bedrooms", type="integer", nullable=true)
+     */
+    private $bedrooms;
+
+    /**
+     * @var int
+     *
      * @ORM\Column(name="bathrooms", type="integer", nullable=true)
      */
     private $bathrooms;
@@ -125,6 +132,13 @@ class Gite
      * @ORM\Column(name="geometry", type="object", nullable=true)
      */
     private $geometry;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="airbnb", type="string", nullable=true)
+     */
+    private $airbnb;
 
     /**
      * Get id
@@ -400,6 +414,23 @@ class Gite
     }
 
     /**
+     * Get prettyKind
+     *
+     * @return string
+     */
+    public function getPrettyKind()
+    {
+        switch ($this->kind) {
+            case 'HOUSE':
+                return 'maison';
+            case 'FLAT':
+                return 'appartement';
+            case 'BUNGALOW':
+                return 'bungalow';
+        }
+    }
+
+    /**
      * Set capacity
      *
      * @param integer $capacity
@@ -559,5 +590,37 @@ class Gite
     public function setGeometry($geometry)
     {
         $this->geometry = $geometry;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAirbnb()
+    {
+        return $this->airbnb;
+    }
+
+    /**
+     * @param string $airbnb
+     */
+    public function setAirbnb($airbnb)
+    {
+        $this->airbnb = $airbnb;
+    }
+
+    /**
+     * @return int
+     */
+    public function getBedrooms()
+    {
+        return $this->bedrooms;
+    }
+
+    /**
+     * @param int $bedrooms
+     */
+    public function setBedrooms($bedrooms)
+    {
+        $this->bedrooms = $bedrooms;
     }
 }
