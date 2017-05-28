@@ -8,3 +8,6 @@ services:
     common.form.flow.create_gite:
         class: Common\EntityBundle\Form\CreateGiteFlow
         parent: craue.form.flow
+
+    common.translate.icon:
+      class: Common\EntityBundle\Service\TranslateToIcon
