@@ -32,7 +32,7 @@ class LoadUserData
         $user->setPhone('+33 06 31 06 06 06');
         $user->setPlainPassword('admin');
         $user->setEnabled(true);
-        $user->addRole('ROLE_AS');
+        $user->addRole('ADMIN');
         $this->addReference('user-admin', $user);
         $userManager->updateUser($user);
     }

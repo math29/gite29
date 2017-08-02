@@ -17,10 +17,19 @@ The house vacations rental in britany !
 - copy app/config/parameters.yml.dist to app/config/parameters.yml
 - The parameters in function of your local environment
 
-### #4 Start Symfony server
+### #4 Update DB
+```
+php bin/console doctrine:database:create
+php bin/console doctrine:schema:update --force
+```
+
+### #5 Start Symfony server
 ```
 php bin/console server:start
 ```
+
+### #BONUS
+To be able to manipulate images in the web folder, you need to configure a vhost
 
 ---
 

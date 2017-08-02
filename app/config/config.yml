@@ -109,3 +109,5 @@ ivory_google_map:
         client: httplug.client.default
         message_factory: httplug.message_factory.default
         format: json
+    map:
+        api_key: "%google_map_api%"
