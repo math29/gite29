@@ -1,6 +1,8 @@
 gite29
 ======
 
+[![Build Status](https://travis-ci.org/math29/gite29.svg?branch=master)](https://travis-ci.org/math29/gite29)
+
 The house vacations rental in britany !
 
 ---
