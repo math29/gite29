@@ -15,8 +15,8 @@ class CRUDControllerTest extends WebTestCase
         $doctrine = $container->get('doctrine');
         $this->entityManager = $doctrine->getManager();
 
-//        $giteFixtures = new LoadGiteData();
-//        $giteFixtures->load($this->entityManager);
+        $giteFixtures = new LoadGiteData();
+        $giteFixtures->load($this->entityManager);
     }
 
     public function testGetAction()
