@@ -1,14 +1,15 @@
 <?php
 namespace Common\EntityBundle\DataFixtures\ORM;
 
+use Common\EntityBundle\Entity\Gite;
 use Common\EntityBundle\Entity\User;
 use Doctrine\Common\DataFixtures\AbstractFixture;
-use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class LoadUserData
+class LoadGiteData
     extends AbstractFixture
     implements OrderedFixtureInterface, ContainerAwareInterface
 {
@@ -24,17 +25,17 @@ class LoadUserData
      */
     public function load(ObjectManager $manager)
     {
-        $userManager = $this->container->get('fos_user.user_manager');
+        $users = $manager->getRepository('CommonEntityBundle:User')->findAll();
+        $user = $users[0];
 
-        $user = $userManager->createUser();
-        $user->setEmail('admin@admin.com');
-        $user->setUsername('admin');
-        $user->setPhone('+33 06 31 06 06 06');
-        $user->setPlainPassword('admin');
-        $user->setEnabled(true);
-        $user->addRole('ADMIN');
-        $this->addReference('user-admin', $user);
-        $userManager->updateUser($user);
+        $gite = new Gite();
+        $gite->setTitle('My beautiful gite');
+        $gite->setDescription('This is my description');
+        $gite->setOwner($user);
+        $gite->setAddress('Fake address');
+
+        $manager->persist($gite);
+        $manager->flush();
     }
 
     /**

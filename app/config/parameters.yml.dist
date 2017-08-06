@@ -17,3 +17,6 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    # Your googleMap api_key your can get right here https://developers.google.com/maps/documentation/javascript/error-messages#no-api-keys
+    google_map_api:   YourGoogleMapApiKey

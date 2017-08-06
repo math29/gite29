@@ -17,15 +17,15 @@ use Http\Message\MessageFactory\GuzzleMessageFactory;
 use Ivory\GoogleMap\Service\Geocoder\Request\GeocoderAddressRequest;
 
 
-class DefaultController extends Controller
+class CRUDController extends Controller
 {
     /**
      * @Route("/{id}", name="property-gite-single", requirements={"id": "\d+"})
      * @ParamConverter("gite", class="CommonEntityBundle:Gite")
      */
-    public function indexAction($gite)
+    public function getAction($gite)
     {
-        return $this->render('FrontGiteBundle:Page:show.html.twig', array(
+        return $this->render('FrontGiteBundle:CRUD:show.html.twig', array(
             "gite" => $gite
         ));
     }
@@ -86,7 +86,7 @@ class DefaultController extends Controller
             }
         }
 
-        return $this->render('FrontGiteBundle:Page:new.html.twig', array(
+        return $this->render('FrontGiteBundle:CRUD:new.html.twig', array(
             'form' => $form->createView(),
             'flow' => $flow
         ));
