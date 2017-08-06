@@ -5,6 +5,11 @@ use Common\EntityBundle\Entity\Gite;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Http\Adapter\Guzzle6\Client;
+use Http\Message\MessageFactory\GuzzleMessageFactory;
+use Ivory\GoogleMap\Service\Base\Geometry;
+use Ivory\GoogleMap\Service\Geocoder\GeocoderService;
+use Ivory\GoogleMap\Service\Geocoder\Request\GeocoderAddressRequest;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -31,11 +36,22 @@ class LoadGiteData
         $gite->setTitle('My beautiful gite');
         $gite->setDescription('This is my description');
         $gite->setOwner($user);
-        $gite->setAddress('Fake address, in Tourcoin');
-        $gite->setKind(array('Maison' => 'HOUSE'));
+        $gite->setAddress('chateau de brest');
+        $gite->setKind('HOUSE');
         $gite->setBedrooms(1);
         $gite->setSize(64);
+        $gite->setCapacity(4);
+        $gite->setBeds(2);
         $gite->setBathrooms(2);
+
+        /* Get Latitude and longitude of given address */
+        $geocoder = new GeocoderService(new Client(), new GuzzleMessageFactory());
+        $request = new GeocoderAddressRequest($gite->getAddress());
+        $results = $geocoder->geocode($request)->getResults();
+
+        if(count($results) > 0) {
+            $gite->setGeometry($results[0]->getGeometry());
+        }
 
         $manager->persist($gite);
         $manager->flush();

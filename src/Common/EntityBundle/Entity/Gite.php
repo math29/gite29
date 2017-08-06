@@ -38,7 +38,7 @@ class Gite
     /**
      * @var array
      *
-     * @ORM\Column(name="kind", type="array", nullable=true)
+     * @ORM\Column(name="kind", type="string", nullable=true)
      */
     private $kind;
 
