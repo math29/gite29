@@ -219,16 +219,19 @@
                     <div class="col-xs-12 col-sm-12 col-md-4">
                         <div class="sidebar sidebar-mod-1">
                             <div class="sidebar-module">
-                                <!-- RD Google Map-->
-                                <div class="rd-google-map">
-                                    <div id="rd-google-map" data-zoom="13" data-x="{{ gite.geometry.location.longitude }}" data-y="{{ gite.geometry.location.latitude }}" data-styles="[{&quot;featureType&quot;:&quot;administrative&quot;,&quot;elementType&quot;:&quot;labels.text.fill&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#444444&quot;}]},{&quot;featureType&quot;:&quot;landscape&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#f2f2f2&quot;}]},{&quot;featureType&quot;:&quot;poi&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;off&quot;}]},{&quot;featureType&quot;:&quot;poi.business&quot;,&quot;elementType&quot;:&quot;geometry.fill&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;on&quot;}]},{&quot;featureType&quot;:&quot;road&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:-100},{&quot;lightness&quot;:45}]},{&quot;featureType&quot;:&quot;road.highway&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;simplified&quot;}]},{&quot;featureType&quot;:&quot;road.arterial&quot;,&quot;elementType&quot;:&quot;labels.icon&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;off&quot;}]},{&quot;featureType&quot;:&quot;transit&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;off&quot;}]},{&quot;featureType&quot;:&quot;water&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#b4d4e1&quot;},{&quot;visibility&quot;:&quot;on&quot;}]}]" class="rd-google-map__model-4">
-                                        <ul class="map_locations">
-                                            <li data-x="{{ gite.geometry.location.longitude }}" data-y="{{ gite.geometry.location.latitude }}">
-                                                <p>{{ gite.address }}</p>
-                                            </li>
-                                        </ul>
+                                {% if gite.geometry %}
+                                    <!-- RD Google Map-->
+                                    <div class="rd-google-map">
+                                        <div id="rd-google-map" data-zoom="13" data-x="{{ gite.geometry.location.longitude }}" data-y="{{ gite.geometry.location.latitude }}" data-styles="[{&quot;featureType&quot;:&quot;administrative&quot;,&quot;elementType&quot;:&quot;labels.text.fill&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#444444&quot;}]},{&quot;featureType&quot;:&quot;landscape&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#f2f2f2&quot;}]},{&quot;featureType&quot;:&quot;poi&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;off&quot;}]},{&quot;featureType&quot;:&quot;poi.business&quot;,&quot;elementType&quot;:&quot;geometry.fill&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;on&quot;}]},{&quot;featureType&quot;:&quot;road&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:-100},{&quot;lightness&quot;:45}]},{&quot;featureType&quot;:&quot;road.highway&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;simplified&quot;}]},{&quot;featureType&quot;:&quot;road.arterial&quot;,&quot;elementType&quot;:&quot;labels.icon&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;off&quot;}]},{&quot;featureType&quot;:&quot;transit&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;off&quot;}]},{&quot;featureType&quot;:&quot;water&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#b4d4e1&quot;},{&quot;visibility&quot;:&quot;on&quot;}]}]" class="rd-google-map__model-4">
+                                            <ul class="map_locations">
+                                                <li data-x="{{ gite.geometry.location.longitude }}" data-y="{{ gite.geometry.location.latitude }}">
+                                                    <p>{{ gite.address }}</p>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div><a href="agent-personal.html" class="btn btn-sushi btn-sm offset-11 btn-full-width">Contacter le propiétaire</a>
+                                {% endif %}
+                                <a href="agent-personal.html" class="btn btn-sushi btn-sm offset-11 btn-full-width">Contacter le propiétaire</a>
                                 {#<a href="#" class="btn btn-primary btn-sm btn-min-width-md btn-full-width offset-10"><span class="icon icon-left icon-sm fa-heart"></span>add to favoRites</a>#}
                             </div>
                             <div class="sidebar-module">

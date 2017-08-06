@@ -2,7 +2,6 @@
 namespace Common\EntityBundle\DataFixtures\ORM;
 
 use Common\EntityBundle\Entity\Gite;
-use Common\EntityBundle\Entity\User;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -32,7 +31,11 @@ class LoadGiteData
         $gite->setTitle('My beautiful gite');
         $gite->setDescription('This is my description');
         $gite->setOwner($user);
-        $gite->setAddress('Fake address');
+        $gite->setAddress('Fake address, in Tourcoin');
+        $gite->setKind(array('Maison' => 'HOUSE'));
+        $gite->setBedrooms(1);
+        $gite->setSize(64);
+        $gite->setBathrooms(2);
 
         $manager->persist($gite);
         $manager->flush();
