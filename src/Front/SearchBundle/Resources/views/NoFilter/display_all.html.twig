@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 
-{% block title %}FrontSearchBundle:NoFilter:displayAll{% endblock %}
+{% block title %}Tous les gites{% endblock %}
 
 {% block body %}
     <section class="section-full section-full-mod-1 text-left">
@@ -19,226 +19,17 @@
             </div>
         </div>
     </section>
-    <!--Section Find your home-->
-    <!--
-    <section class="section-sm section-bottom-0 undefined text-left">
-        <div class="container position-margin-top position-margin-top-mod-1">
-            <div class="search-form-wrap bg-white container-shadow">
-                <h3>Find Your Home</h3>
-                <form action="#" name="search-form" class="form-variant-1">
-                    <div class="form-group">
-                        <label for="keyword" class="form-label">Keyword</label>
-                        <input id="keyword" type="text" name="keyword" placeholder="Any" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="select-search-1" class="form-label">Location</label>
-                        <select id="select-search-1" data-minimum-results-for-search="Infinity" class="form-control select-filter">
-                            <option value="Any" selected="selected">Any</option>
-                            <option value="Denver">Denver</option>
-                            <option value="Houston">Houston</option>
-                            <option value="Las Vegas">Las Vegas</option>
-                            <option value="Orlando">Orlando</option>
-                            <option value="Phoenix">Phoenix</option>
-                            <option value="San Diego">San Diego</option>
-                            <option value="Miami">Miami</option>
-                            <option value="Atlanta">Atlanta</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="select-search-2" class="form-label">Property Status</label>
-                        <select id="select-search-2" data-minimum-results-for-search="Infinity" class="form-control select-filter">
-                            <option value="Any" selected="selected">Any</option>
-                            <option value="Vacant land">Vacant land</option>
-                            <option value="Commercial">Commercial</option>
-                            <option value="Residential">Residential</option>
-                            <option value="Homes">Homes</option>
-                            <option value="Condos">Condos</option>
-                            <option value="Townhouses">Townhouses</option>
-                            <option value="Foreclosures">Foreclosures</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="select-search-3" class="form-label">Property Type</label>
-                        <select id="select-search-3" data-minimum-results-for-search="Infinity" class="form-control select-filter">
-                            <option value="Any" selected="selected">Any</option>
-                            <option value="Under Construction">Under Construction</option>
-                            <option value="Ready to Move">Ready to Move</option>
-                        </select>
-                    </div>
-                    <div class="form-group width-1">
-              <span>Price (USD)
-                <br>
-              </span>
-                        <div class="form-inline-flex-xs">
-                            <input id="range-1" type="text" name="range-2" class="rd-range-input-value rd-range-input-value-1 form-control">
-                            <span class="text-abbey dash">—</span>
-                            <input id="range-2" type="text" name="range-3" class="rd-range-input-value rd-range-input-value-2 form-control">
-                        </div>
-                        <div data-min="100" data-max="10000" data-start="[600, 9500]" data-step="50" data-tooltip="true" data-min-diff="100" data-input=".rd-range-input-value-1" data-input-2=".rd-range-input-value-2" class="rd-range"></div>
-                    </div>
-                    <div class="form-group width-1">
-              <span>Area (Sq Ft)
-                <br>
-              </span>
-                        <div class="form-inline-flex-xs">
-                            <input id="range-3" type="text" name="range-2" class="rd-range-input-value rd-range-input-value-3 form-control">
-                            <span class="text-abbey dash">—</span>
-                            <input id="range-4" type="text" name="range-3" class="rd-range-input-value rd-range-input-value-4 form-control">
-                        </div>
-                        <div data-min="500" data-max="22000" data-start="[2000, 20000]" data-step="50" data-tooltip="true" data-min-diff="500" data-input=".rd-range-input-value-3" data-input-2=".rd-range-input-value-4" class="rd-range"></div>
-                    </div>
-                    <div class="form-group width-2">
-                        <label for="select-search-7" class="form-label">Min Beds</label>
-                        <select id="select-search-7" data-minimum-results-for-search="Infinity" class="form-control select-filter">
-                            <option value="Any" selected="selected">Any</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                        </select>
-                    </div>
-                    <div class="form-group width-2">
-                        <label for="select-search-8" class="form-label">Min Baths</label>
-                        <select id="select-search-8" data-minimum-results-for-search="Infinity" class="form-control select-filter">
-                            <option value="Any" selected="selected">Any</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                        </select>
-                    </div>
-                    <button class="btn btn-sm btn-sushi btn-min-width-sm">Search</button>
-                    <div class="features">
-                        <a href="" onclick="return false" class="btn-features">
-                            <span></span>Look for certain features</a>
-                        <ul class="checkbox-list list-inline">
-                            <li>
-                                <label class="checkbox-inline">
-                                    <input name="input-group-radio" value="checkbox-1" type="checkbox" checked="checked">
-                                    <span>Central Heating (7)</span>
-                                </label>
-                            </li>
-                            <li>
-                                <label class="checkbox-inline">
-                                    <input name="input-group-radio" value="checkbox-2" type="checkbox">
-                                    <span>Lawn (6)</span>
-                                </label>
-                            </li>
-                            <li>
-                                <label class="checkbox-inline">
-                                    <input name="input-group-radio" value="checkbox-3" type="checkbox">
-                                    <span>Marble Floors (8)</span>
-                                </label>
-                            </li>
-                            <li>
-                                <label class="checkbox-inline">
-                                    <input name="input-group-radio" value="checkbox-4" type="checkbox">
-                                    <span>Fire Alarm (5)</span>
-                                </label>
-                            </li>
-                            <li>
-                                <label class="checkbox-inline">
-                                    <input name="input-group-radio" value="checkbox-5" type="checkbox">
-                                    <span>Home Theater (3)</span>
-                                </label>
-                            </li>
-                            <li>
-                                <label class="checkbox-inline">
-                                    <input name="input-group-radio" value="checkbox-6" type="checkbox">
-                                    <span>Hurricane Shutters (1)</span>
-                                </label>
-                            </li>
-                        </ul>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
-    -->
-    <!-- Section Catalog-->
+
     <section class="section-md section-mod-1 text-left">
         <div class="container">
             <div class="row">
-                <!--
-                <div class="col-xs-12 col-sm-3 pull-xs-left text-center text-sm-left">
-                    <div class="sort-input">
-                        <div class="form-group form-group-mod-1">
-                            <label for="sort-1" class="form-label">Sorting</label>
-                            <select id="sort-1" data-minimum-results-for-search="Infinity"
-                                    class="form-control select-filter">
-                                <option value="By Price" selected="selected">By Price</option>
-                                <option value="By Date">By Date</option>
-                                <option value="By Square">By Square</option>
-                                <option value="By Location">By Location</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                -->
-                <div class="col-xs-12 col-sm-4 pull-xs-right text-center text-sm-right">
-                    <div class="btn-group-mod-3 sorting">
-                        <a href="#" class="btn btn-primary-transparent btn-sm">List</a>
-                        <a href="#" class="btn btn-primary-transparent btn-sm active">Grid</a>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 col-lg-8">
+                <div class="col-xs-12 col-lg-12">
                     <div class="row clearleft-custom-5">
                         {% for gite in gites | sortbyfield('title') %}
-                            <!--{{ dump(gite) }}-->
                             <div class="col-xs-12 col-sm-6">
                                 {% include 'FrontSearchBundle:NoFilter:gite_preview.html.twig' with {'gite': gite} %}
                             </div>
                         {% endfor %}
-                        <!--
-                        <div class="col-xs-12 text-center text-sm-left offset-11">
-                            <ul class="pagination">
-                                <li class="disabled">
-                                    <span class="fa-chevron-left"></span>
-                                </li>
-                                <li class="active">
-                                    <span>1</span>
-                                </li>
-                                <li>
-                                    <a href="#">2</a>
-                                </li>
-                                <li>
-                                    <a href="#">3</a>
-                                </li>
-                                <li>
-                                    <a href="#">4</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="fa-chevron-right"></a>
-                                </li>
-                            </ul>
-                        </div>
-                        -->
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-lg-4 offset-4 inset-10 offset-14">
-                    <!-- RD Google Map-->
-                    <div class="rd-google-map">
-                        <div id="rd-google-map" data-zoom="15" data-x="-73.9874068" data-y="40.643180"
-                             data-styles="[{&quot;featureType&quot;:&quot;administrative&quot;,&quot;elementType&quot;:&quot;labels.text.fill&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#444444&quot;}]},{&quot;featureType&quot;:&quot;landscape&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#f2f2f2&quot;}]},{&quot;featureType&quot;:&quot;poi&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;off&quot;}]},{&quot;featureType&quot;:&quot;poi.business&quot;,&quot;elementType&quot;:&quot;geometry.fill&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;on&quot;}]},{&quot;featureType&quot;:&quot;road&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:-100},{&quot;lightness&quot;:45}]},{&quot;featureType&quot;:&quot;road.highway&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;simplified&quot;}]},{&quot;featureType&quot;:&quot;road.arterial&quot;,&quot;elementType&quot;:&quot;labels.icon&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;off&quot;}]},{&quot;featureType&quot;:&quot;transit&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;off&quot;}]},{&quot;featureType&quot;:&quot;water&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#b4d4e1&quot;},{&quot;visibility&quot;:&quot;on&quot;}]}]"
-                             class="rd-google-map__model-3">
-                            <ul class="map_locations">
-                                <li data-x="-73.9874068" data-y="40.643180">
-                                    <p>9870 St Vincent Place, Glasgow, DC 45 Fr 45.</p>
-                                </li>
-                                <li data-x="-73.990172" data-y="40.644285">
-                                    <p>9870 St Vincent Place, Glasgow, DC 45 Fr 45.</p>
-                                </li>
-                                <li data-x="-73.980172" data-y="40.646285">
-                                    <p>9870 St Vincent Place, Glasgow, DC 45 Fr 45.</p>
-                                </li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </div>

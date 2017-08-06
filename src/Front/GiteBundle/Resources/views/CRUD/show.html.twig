@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('front-assets/css/font-style.css') }}" />
+{% endblock %}
+
 {% block body %}
     <main class="page-content text-left">
         <!-- Section Title Breadcrumbs-->
@@ -11,6 +15,7 @@
                         <p></p>
                         <ol class="breadcrumb">
                             <li><a href="{{ path('home') }}">Home</a></li>
+                            <li><a href="{{ path('search_display_all') }}">Tous les gites</a></li>
                             <li class="active">{{ gite.title }}</li>
                         </ol>
                     </div>
@@ -27,12 +32,12 @@
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
                         <p>Localisation</p>
-                        <p class="h5 text-regular">7758 Laguna heights Court, San Francisco, MA 02127</p>
+                        <p class="h5 text-regular">{{ gite.address }}</p>
                     </div>
-                    <div class="col-xs-12 col-sm-6 col-md-3 col-lg-2 col-lg-offset-1">
+                    {#<div class="col-xs-12 col-sm-6 col-md-3 col-lg-2 col-lg-offset-1">
                         <p>Prix</p>
                         <p class="thumbnail-price h5">$2490.00<span class="mon text-regular">/month</span></p>
-                    </div>
+                    </div>#}
                 </div>
             </div>
         </section>
@@ -67,140 +72,168 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <h4 class="border-bottom">Overview</h4>
-                                <div class="table-mobile offset-11">
-                                    <table class="table table-default">
-                                        <tbody>
-                                        <tr>
-                                            <td>Area</td>
-                                            <td>1200 sq ft</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Bedrooms</td>
-                                            <td>4</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Bathrooms</td>
-                                            <td>2</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Garages</td>
-                                            <td>2</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Features</td>
-                                            <td>Lawn, Sprinkler System, Marble Floors</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Year Built</td>
-                                            <td>1998</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Lot Size</td>
-                                            <td>5.45</td>
-                                        </tr>
-                                        <tr>
-                                            <td>School District</td>
-                                            <td>San Francisco Glen (925) 862-2026</td>
-                                        </tr>
-                                        <tr>
-                                            <td>High School</td>
-                                            <td>Call School District</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Middle School</td>
-                                            <td>Call School District</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Elementary School</td>
-                                            <td>Call School District</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Parking Type</td>
-                                            <td>Garage - Attached</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Room Count</td>
-                                            <td>6</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Roof Type</td>
-                                            <td>Tile</td>
-                                        </tr>
-                                        <tr>
-                                            <td>View Type</td>
-                                            <td>Mountain</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Exterior Type</td>
-                                            <td>Stucco</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <h4 class="border-bottom offset-8">Description</h4>
-                                <p>405 Canyon Vista Dr Spectacular mountain view, sublime privacy & endless flexibility converge right here on 1 of Mt Washington's favorite streets. Sunrise breakfast vistas, discreet gated entry & the luxury of an open loft office/den plus the 2/2 practicality let you love it just as it is or spend happy veranda hours contemplating expansive Dwell or HGTV dreams. Cars to pamper or creative space high on your list?</p>
-                                <p>The enclosed carport is ready and waiting. Longing to build some raised garden beds? The generous Meyer lemon will dress your fresh veggies in style. Contemplating happy gatherings? The indoor ope...n flow welcomes cozy dinners or that long summer feast under the stars. Lovingly cared for, wonderfully sited for all that brings you to Mt Washington, handy to NELA & beyond.</p>
-                                <h4 class="border-bottom offset-8">Reviews</h4>
-                                <div class="media media-mod-2 comment">
-                                    <div class="media-left round"><img src="{{ asset('front-assets/images/product-thumbnail-1.jpg') }}" alt="" width="70" height="70" class="round"></div>
-                                    <div class="media-body">
-                                        <p class="h6 text-sushi text-ubold">Marilyn Taylor</p>
-                                        <time datetime="2016" class="fa-calendar">May 21, 2016 at 5:50 pm</time>
-                                        <p class="text-light">I just don't know how to describe your services... They are extraordinary! I am quite happy with them! Just keep up going this way!</p><a href="#" class="text-sushi"><span class="fa-mail-reply icon"></span><span>Reply</span></a>
+                                <h4 class="border-bottom">A propos de ce logement</h4>
+                                <ul class="row">
+                                    <li class="col-lg-3 col-md-3 col-sm-6 col-xs-6 clear-shortcode-xs-6">
+                                        <div class="icon-short-code">
+                                            <div style="text-align: center;">
+                                                <span class="icon icon-lg icon-primary fa-home"></span>
+                                            </div>
+                                            <div style="text-align: center;">
+                                                {{ gite.getPrettyKind() }}
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="col-lg-3 col-md-3 col-sm-6 col-xs-6 clear-shortcode-xs-6">
+                                        <div class="icon-short-code">
+                                            <div style="text-align: center;">
+                                                <span class="icon icon-lg icon-primary fa-users"></span>
+                                            </div>
+                                            <div style="text-align: center;">
+                                                {{ gite.capacity() }} voyageur{% if gite.capacity() > 1 %}s{% endif %}
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="col-lg-3 col-md-3 col-sm-6 col-xs-6 clear-shortcode-xs-6">
+                                        <div class="icon-short-code">
+                                            <div style="text-align: center;">
+                                                <span class="icon icon-lg icon-primary fa-key"></span>
+                                            </div>
+                                            <div style="text-align: center;">
+                                                {{ gite.getBedrooms() }} chambre{% if gite.capacity() > 1 %}s{% endif %}
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="col-lg-3 col-md-3 col-sm-6 col-xs-6 clear-shortcode-xs-6">
+                                        <div class="icon-short-code">
+                                            <div style="text-align: center;">
+                                                <span class="icon icon-lg icon-primary fa-bed"></span>
+                                            </div>
+                                            <div style="text-align: center;">
+                                                {{ gite.getBeds() }} lit{% if gite.capacity() > 1 %}s{% endif %}
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="border-bottom"></div>
+                                <div class="row">
+                                    <h5 class="col-md-4">
+                                        Le logement
+                                    </h5>
+                                    <div class="col-md-4">
+                                        <p>Capacité accueil: <strong>{{ gite.capacity() }}</strong></p>
+                                        <p>Salles de bain: <strong>{{ gite.bathrooms() }}</strong></p>
+                                        <p>Chambres: <strong>{{ gite.bedrooms() }}</strong></p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p>Lits: <strong>{{ gite.beds() }}</strong></p>
+                                        <p>Type de propriété: <strong>{{ gite.getPrettyKind() }}</strong></p>
+                                        <p>Superficie: <strong>{{ gite.size() }} m<sup>2</sup></strong></p>
                                     </div>
                                 </div>
-                                <div class="media media-mod-2 comment comment-repost">
-                                    <div class="media-left round"><img src="{{ asset('front-assets/images/product-thumbnail-1.jpg') }}" alt="" width="70" height="70" class="round"></div>
-                                    <div class="media-body">
-                                        <p class="h6 text-sushi text-ubold">Heather Turner</p>
-                                        <time datetime="2016" class="fa-calendar">May 21, 2016 at 6:23 pm</time>
-                                        <p class="text-light">Thank you!</p><a href="#" class="text-sushi"><span class="fa-mail-reply icon"></span><span>Reply</span></a>
-                                    </div>
-                                </div>
-                                <h4 class="border-bottom offset-8">Write Review</h4>
-                                <!-- RD Mailform-->
-                                <form class="text-left offset-11">
+                                {% if gite.features|length > 0 %}
                                     <div class="row">
-                                        <div class="col-xs-12 col-sm-6">
-                                            <div class="form-group">
-                                                <label for="contact-name" class="form-label">Enter your name</label>
-                                                <input id="contact-name" type="text" name="name" data-constraints="@Required" class="form-control">
-                                            </div>
+                                        <h5 class="col-md-4">
+                                            Equipements
+                                        </h5>
+                                        <div class="col-md-4">
+                                            {% for feature in gite.features %}
+                                                {% if not loop.index is divisible by(2) %}
+                                                    <div>
+                                                        <div class="font-icon {{ translate_icon.translate(feature)[1] }}"></div>
+                                                        <span>{{ translate_icon.translate(feature)[0] }}</span>
+                                                    </div>
+                                                {% endif %}
+                                            {% endfor %}
                                         </div>
-                                        <div class="col-xs-12 col-sm-6">
-                                            <div class="form-group">
-                                                <label for="contact-email" class="form-label">Enter your e-mail</label>
-                                                <input id="contact-email" type="email" name="email" data-constraints="@Required @Email" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12">
-                                            <div class="form-group">
-                                                <label for="contact-message" class="form-label">Enter your message</label>
-                                                <textarea id="contact-message" name="message" data-constraints="@Required" class="form-control"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12">
-                                            <button type="submit" class="btn btn-sushi btn-sm">Send message</button>
+                                        <div class="col-md-4">
+                                            {% for feature in gite.features %}
+                                                {% if loop.index is divisible by(2) %}
+                                                    <div>
+                                                        <div class="font-icon {{ translate_icon.translate(feature)[1] }}"></div>
+                                                        <span>{{ translate_icon.translate(feature)[0] }}</span>
+                                                    </div>
+                                                {% endif %}
+                                            {% endfor %}
                                         </div>
                                     </div>
-                                </form>
+                                {% endif %}
+                                {% if gite.safetyFeatures|length > 0 %}
+                                    <div class="row">
+                                        <h5 class="col-md-4">
+                                            Sécurité
+                                        </h5>
+                                        <div class="col-md-4">
+                                            {% for safetyFeature in gite.safetyFeatures %}
+                                                {% if not loop.index is divisible by(2) %}
+                                                    <div>
+                                                        <div class="font-icon {{ translate_icon.translate(safetyFeature)[1] }}"></div>
+                                                        <span>{{ translate_icon.translate(safetyFeature)[0] }}</span>
+                                                    </div>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                        <div class="col-md-4">
+                                            {% for safetyFeature in gite.safetyFeatures %}
+                                                {% if loop.index is divisible by(2) %}
+                                                    <div>
+                                                        <div class="font-icon {{ translate_icon.translate(safetyFeature)[1] }}"></div>
+                                                        <span>{{ translate_icon.translate(safetyFeature)[0] }}</span>
+                                                    </div>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                {% if gite.spaces|length > 0 %}
+                                    <div class="row">
+                                        <h5 class="col-md-4">
+                                            Espaces
+                                        </h5>
+                                        <div class="col-md-4">
+                                            {% for space in gite.spaces%}
+                                                {% if not loop.index is divisible by(2) %}
+                                                    <div>
+                                                        <div class="font-icon {{ translate_icon.translate(space)[1] }}"></div>
+                                                        <span>{{ translate_icon.translate(space)[0] }}</span>
+                                                    </div>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                        <div class="col-md-4">
+                                            {% for space in gite.spaces %}
+                                                {% if loop.index is divisible by(2) %}
+                                                    <div>
+                                                        <div class="font-icon {{ translate_icon.translate(space)[1] }}"></div>
+                                                        <span>{{ translate_icon.translate(space)[0] }}</span>
+                                                    </div>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                <h4 class="border-bottom offset-8">Description</h4>
+                                <p>{{ gite.description }}</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-4">
                         <div class="sidebar sidebar-mod-1">
                             <div class="sidebar-module">
-                                <!-- RD Google Map-->
-                                <div class="rd-google-map">
-                                    <div id="rd-google-map" data-zoom="15" data-x="-73.9874068" data-y="40.643180" data-styles="[{&quot;featureType&quot;:&quot;administrative&quot;,&quot;elementType&quot;:&quot;labels.text.fill&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#444444&quot;}]},{&quot;featureType&quot;:&quot;landscape&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#f2f2f2&quot;}]},{&quot;featureType&quot;:&quot;poi&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;off&quot;}]},{&quot;featureType&quot;:&quot;poi.business&quot;,&quot;elementType&quot;:&quot;geometry.fill&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;on&quot;}]},{&quot;featureType&quot;:&quot;road&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:-100},{&quot;lightness&quot;:45}]},{&quot;featureType&quot;:&quot;road.highway&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;simplified&quot;}]},{&quot;featureType&quot;:&quot;road.arterial&quot;,&quot;elementType&quot;:&quot;labels.icon&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;off&quot;}]},{&quot;featureType&quot;:&quot;transit&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;off&quot;}]},{&quot;featureType&quot;:&quot;water&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#b4d4e1&quot;},{&quot;visibility&quot;:&quot;on&quot;}]}]" class="rd-google-map__model-4">
-                                        <ul class="map_locations">
-                                            <li data-x="-73.9874068" data-y="40.643180">
-                                                <p>9870 St Vincent Place, Glasgow, DC 45 Fr 45.</p>
-                                            </li>
-                                        </ul>
+                                {% if gite.geometry %}
+                                    <!-- RD Google Map-->
+                                    <div class="rd-google-map">
+                                        <div id="rd-google-map" data-zoom="13" data-x="{{ gite.geometry.location.longitude }}" data-y="{{ gite.geometry.location.latitude }}" data-styles="[{&quot;featureType&quot;:&quot;administrative&quot;,&quot;elementType&quot;:&quot;labels.text.fill&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#444444&quot;}]},{&quot;featureType&quot;:&quot;landscape&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#f2f2f2&quot;}]},{&quot;featureType&quot;:&quot;poi&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;off&quot;}]},{&quot;featureType&quot;:&quot;poi.business&quot;,&quot;elementType&quot;:&quot;geometry.fill&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;on&quot;}]},{&quot;featureType&quot;:&quot;road&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:-100},{&quot;lightness&quot;:45}]},{&quot;featureType&quot;:&quot;road.highway&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;simplified&quot;}]},{&quot;featureType&quot;:&quot;road.arterial&quot;,&quot;elementType&quot;:&quot;labels.icon&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;off&quot;}]},{&quot;featureType&quot;:&quot;transit&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;off&quot;}]},{&quot;featureType&quot;:&quot;water&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#b4d4e1&quot;},{&quot;visibility&quot;:&quot;on&quot;}]}]" class="rd-google-map__model-4">
+                                            <ul class="map_locations">
+                                                <li data-x="{{ gite.geometry.location.longitude }}" data-y="{{ gite.geometry.location.latitude }}">
+                                                    <p>{{ gite.address }}</p>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div><a href="agent-personal.html" class="btn btn-sushi btn-sm offset-11 btn-full-width">contact an agent</a><a href="#" class="btn btn-primary btn-sm btn-min-width-md btn-full-width offset-10"><span class="icon icon-left icon-sm fa-heart"></span>add to favoRites</a>
+                                {% endif %}
+                                <a href="agent-personal.html" class="btn btn-sushi btn-sm offset-11 btn-full-width">Contacter le propiétaire</a>
+                                {#<a href="#" class="btn btn-primary btn-sm btn-min-width-md btn-full-width offset-10"><span class="icon icon-left icon-sm fa-heart"></span>add to favoRites</a>#}
                             </div>
                             <div class="sidebar-module">
                                 <h4 class="border-bottom">Request a Showing</h4>

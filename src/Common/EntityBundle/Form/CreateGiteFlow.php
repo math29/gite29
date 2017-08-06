@@ -33,6 +33,10 @@ class CreateGiteFlow extends FormFlow {
                 'form_type' => 'Common\EntityBundle\Form\DescriptionGiteType'
             ),
             array(
+                'label' => 'Liens autre plateformes',
+                'form_type' => 'Common\EntityBundle\Form\SocialMediaGiteType'
+            ),
+            array(
                 'label' => 'confirmation',
             ),
         );

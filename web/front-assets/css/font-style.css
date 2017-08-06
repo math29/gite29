@@ -1,0 +1,110 @@
+/*
+    Icons available :
+*/
+
+.font-icon {
+    display: inline-block;
+    width: 40px;
+    height: 31px;
+    background-size: 40px 31px !important;
+}
+
+.font-icon.icon-xs {
+    font-size: 28px;
+}
+
+.font-icon.iron-icon {
+    text-indent: -9999px;
+    background: url(../fonts/features/iron.svg);
+}
+
+.font-icon.ac-icon {
+    text-indent: -9999px;
+    background: url(../fonts/features/air-conditioner.svg);
+}
+
+.font-icon.fireplace-icon {
+    text-indent: -9999px;
+    background: url(../fonts/features/fireplace.svg);
+}
+
+.font-icon.dryer-icon {
+    text-indent: -9999px;
+    background: url(../fonts/features/hair-dryer.svg);
+}
+
+.font-icon.heater-icon {
+    text-indent: -9999px;
+    background: url(../fonts/features/heater.svg);
+}
+
+.font-icon.soap-icon {
+    text-indent: -9999px;
+    background: url(../fonts/features/soap.svg);
+}
+
+.font-icon.soap2-icon {
+    text-indent: -9999px;
+    background: url(../fonts/features/soap-2.svg);
+}
+
+.font-icon.toaster-icon {
+    text-indent: -9999px;
+    background: url(../fonts/features/toaster.svg);
+}
+
+.font-icon.towel-icon {
+    background: url(../fonts/features/towel.svg);
+}
+
+.font-icon.wardrobe-icon {
+    background: url(../fonts/features/wardrobe.svg);
+}
+
+.font-icon.washing-machine-icon {
+    background: url(../fonts/features/washing-machine.svg);
+}
+
+.font-icon.work-station-icon {
+    background: url(../fonts/features/work-station.svg);
+}
+
+.font-icon.elevator-icon {
+    background: url(../fonts/features/elevator.svg);
+}
+
+.font-icon.first-help-icon {
+    background: url(../fonts/features/first-help.svg);
+}
+
+.font-icon.garage-icon {
+    background: url(../fonts/features/garage.svg);
+}
+
+.font-icon.garden-icon {
+    background: url(../fonts/features/garden.svg);
+}
+
+.font-icon.jacuzzi-icon {
+    background: url(../fonts/features/jacuzzi.svg);
+}
+
+.font-icon.kitchen-icon {
+    background: url(../fonts/features/kitchen.svg);
+}
+
+.font-icon.parking-icon {
+    background: url(../fonts/features/parking.svg);
+}
+
+.font-icon.smoke-detector-icon {
+    background: url(../fonts/features/smoke-detector.svg);
+}
+
+.font-icon.swimming-pool-icon {
+    background: url(../fonts/features/swimming-pool.svg);
+}
+
+.font-icon.wooden-fence-icon {
+    background: url(../fonts/features/wooden-fence.svg);
+}

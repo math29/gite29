@@ -2,7 +2,6 @@
 
 namespace Front\GiteBundle\Tests\Controller;
 
-use Common\EntityBundle\DataFixtures\ORM\LoadGiteData;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Console\Input\StringInput;
@@ -11,15 +10,6 @@ class CRUDControllerTest extends WebTestCase
 {
     private $entityManager;
 
-//    public function setUp() {
-//        $client = static::createClient();
-//        $container = $client->getContainer();
-//        $doctrine = $container->get('doctrine');
-//        $this->entityManager = $doctrine->getManager();
-//
-//        $giteFixtures = new LoadGiteData();
-//        $giteFixtures->load($this->entityManager);
-//    }
     private static $application;
 
     protected function setUp()
@@ -31,7 +21,7 @@ class CRUDControllerTest extends WebTestCase
 
         self::runCommand('doctrine:database:create');
         self::runCommand('doctrine:schema:update --force');
-        self::runCommand('doctrine:fixtures:load --no-interaction ');
+        self::runCommand('doctrine:fixtures:load --no-interaction');
     }
 
     protected static function runCommand($command)
@@ -61,9 +51,12 @@ class CRUDControllerTest extends WebTestCase
 
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/'.$gite->getId());
+        $client->request('GET', '/'.$gite->getId());
         var_dump($client->getResponse()->getContent());
-        $this->assertContains('06 31 06 72 82', $client->getResponse()->getContent());
+
+        // Find gite address and description
+        $this->assertContains('Fake address, in Tourcoin', $client->getResponse()->getContent());
+        $this->assertContains('This is my description', $client->getResponse()->getContent());
     }
 
     public function testNewAction()
