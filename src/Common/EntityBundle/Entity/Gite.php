@@ -120,6 +120,13 @@ class Gite
     private $photos;
 
     /**
+     * @var Array
+     *
+     * @ORM\Column(name="rent_requests", type="array", nullable=true)
+     */
+    private $rentRequests;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="reviews", type="string", length=255, nullable=true)
@@ -622,5 +629,21 @@ class Gite
     public function setBedrooms($bedrooms)
     {
         $this->bedrooms = $bedrooms;
+    }
+
+    /**
+     * @return Array
+     */
+    public function getRentRequests()
+    {
+        return $this->rentRequests;
+    }
+
+    /**
+     * @param Array $rentRequests
+     */
+    public function setRentRequests($rentRequests)
+    {
+        $this->rentRequests = $rentRequests;
     }
 }

@@ -1,7 +1,83 @@
-{% extends "::base.html.twig" %}
+{% extends 'base.html.twig' %}
 
-{% block title %}FrontGiteBundle:Request:RentRequest{% endblock %}
+{% block title %}Contact propriétaire{% endblock %}
 
 {% block body %}
-<h1>Welcome to the Request:RentRequest page</h1>
+    <main class="page-content text-left">
+        <!-- Section Title Breadcrumbs-->
+        <section class="section-full">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1>{{ gite.title }}</h1>
+                        <p></p>
+                        <ol class="breadcrumb">
+                            <li><a href="{{ path('home') }}">Home</a></li>
+                            <li><a href="{{ path('search_display_all') }}">Tous les gites</a></li>
+                            <li><a href="{{ path('property-gite-single', {'id': gite.id}) }}">{{ gite.title }}</a></li>
+                            <li class="active">Contact propriétaire</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-md text-left">
+            <div class="container">
+                <div class="row">
+                {{ form_start(form) }}
+                {{ form_errors(form) }}
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        {{ form_label(form.firstName, 'Votre prénom', {'attr': {'class': 'form-control'}}) }}
+                        {{ form_widget(form.firstName, {'attr': {'placeholder' : 'Votre prenom', 'class': 'form-control'}}) }}
+                        {{ form_errors(form.firstName) }}
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        {{ form_label(form.lastName, 'Votre nom', {'attr': {'class': 'form-control'}}) }}
+                        {{ form_widget(form.lastName, {'attr': {'placeholder' : 'Votre nom', 'class': 'form-control'}}) }}
+                        {{ form_errors(form.lastName) }}
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        {{ form_label(form.startDate, 'Début de séjour', {'attr': {'class': 'form-control'}}) }}
+                        {{ form_widget(form.startDate, {'attr': {'placeholder' : 'Date de début de séjour souhaité', 'type': 'date', 'class': 'form-control'}}) }}
+                        {{ form_errors(form.startDate) }}
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        {{ form_label(form.endDate, 'Fin de séjour', {'attr': {'class': 'form-control'}}) }}
+                        {{ form_widget(form.endDate, {'attr': {'placeholder' : 'Date de fin de séjour souhaité', 'class': 'form-control'}}) }}
+                        {{ form_errors(form.endDate) }}
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        {{ form_label(form.comment, 'Un commentaire ?', {'attr': {'class': 'form-control'}}) }}
+                        {{ form_widget(form.comment, {'attr': {'placeholder' : 'Un commentaire ?', 'class': 'form-control'}}) }}
+                        {{ form_errors(form.comment) }}
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <a class="btn btn-primary btn-sm"
+                           href="{{ path('property-gite-single', {'id': gite.id}) }}">Annuler</a>
+                        {{ form_widget(form.save, { 'label': 'Envoyer', 'attr':{
+                            'class': 'btn btn-sushi btn-sm btn-shadow-1 btn-sm'
+                        }}) }}
+                    </div>
+                </div>
+                {#{{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}#}
+
+                {{ form_rest(form) }}
+                {{ form_end(form) }}
+                </div>
+            </div>
+        </section>
+    </main>
 {% endblock %}

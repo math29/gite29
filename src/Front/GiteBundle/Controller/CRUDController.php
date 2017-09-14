@@ -22,6 +22,8 @@ class CRUDController extends Controller
     /**
      * @Route("/{id}", name="property-gite-single", requirements={"id": "\d+"})
      * @ParamConverter("gite", class="CommonEntityBundle:Gite")
+     * @param $gite
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function getAction($gite)
     {
@@ -31,7 +33,9 @@ class CRUDController extends Controller
     }
 
     /**
-     * @Route("/new-gite", name="new-property")
+     * @Route("/new-gite", name="new-gite")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newAction(Request $request)
     {
