@@ -33,8 +33,8 @@ class RequestController extends Controller
             $em->persist($rentRequest);
             $em->flush();
 
-            $notificationGenerator = $this->get(NotificationGenerator::class);
-            $notificationGenerator->sendNotification();
+            $notificationGenerator = $this->get('common_mailer.notification');
+            $notificationGenerator->sendNotification($gite->getOwner(), "content");
 
             return $this->redirectToRoute('home'); // redirect when done
         }

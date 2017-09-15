@@ -1,0 +1,4 @@
+services:
+    common_mailer.notification:
+        class: Common\MailerBundle\Service\NotificationGenerator
+        arguments: ["@service_container"]
