@@ -3,16 +3,12 @@
 {% block body %}
     <p>
         Bonjour {{ receiver.username }},<br>
-        {{ rentRequest.firstName }} {{ rentRequest.lastName }} vient de vous envoyer une demande de location concernant
-        l'annonce {{ rentRequest.gite.title }}.
+        {{ informationRequest.firstName }} {{ informationRequest.lastName }} vient de vous envoyer une demande d'information concernant l'annonce {{ informationRequest.gite.title }}.
         <br>
-        Periode demandée: <br>
-        Du {{ rentRequest.startDate.format('Y-m-d') }} au {{ rentRequest.endDate.format('Y-m-d') }} <br>
-        Commentaire: <br>
-        {{ rentRequest.comment }}
+        Voici son message: <br>
+        {{ informationRequest.comment }}
     </p>
-    <a type="submit" href="mailto:{{ rentRequest.email }}"
-            style="background-color:rgb(252, 136, 22);
+    <button type="submit" href="mailto:{{ informationRequest.email }}" style="background-color:rgb(252, 136, 22);
             border-bottom-color:rgb(252, 136, 22);
             border-bottom-left-radius:6px;
             border-bottom-right-radius:6px;
@@ -62,7 +58,5 @@
             white-space:nowrap;
             width:131.094px;
             -webkit-font-smoothing:subpixel-antialiased;
-            -webkit-tap-highlight-color:rgba(0, 0, 0, 0);">
-        Send message
-    </a>
+            -webkit-tap-highlight-color:rgba(0, 0, 0, 0);">Send message</button>
 {% endblock %}

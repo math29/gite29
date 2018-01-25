@@ -2,20 +2,19 @@
 
 namespace Common\EntityBundle\Entity;
 
-use Doctrine\DBAL\Types\DateTimeType;
-use Mgilet\NotificationBundle\Annotation\Notifiable;
-use Mgilet\NotificationBundle\NotifiableInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Mgilet\NotificationBundle\Annotation\Notifiable;
+use Mgilet\NotificationBundle\NotifiableInterface;
 
 /**
- * RentRequest
+ * InformationRequest
  *
- * @ORM\Table(name="rent_request")
- * @ORM\Entity(repositoryClass="Common\EntityBundle\Repository\RentRequestRepository")
+ * @ORM\Table(name="information_request")
+ * @ORM\Entity(repositoryClass="Common\EntityBundle\Repository\InformationRequestRepository")
  * @Notifiable(name="information_request")
  */
-class RentRequest implements NotifiableInterface
+class InformationRequest implements NotifiableInterface
 {
     /**
      * @var int
@@ -27,7 +26,7 @@ class RentRequest implements NotifiableInterface
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Gite", inversedBy="rent_requests")
+     * @ORM\ManyToOne(targetEntity="Gite", inversedBy="information_requests")
      * @ORM\JoinColumn(name="gite_id", referencedColumnName="id")
      */
     protected $gite;
@@ -56,20 +55,6 @@ class RentRequest implements NotifiableInterface
     private $lastName;
 
     /**
-     * @var DateTimeType
-     *
-     * @ORM\Column(name="start_date", type="datetime")
-     */
-    private $startDate;
-
-    /**
-     * @var DateTimeType
-     *
-     * @ORM\Column(name="end_date", type="datetime")
-     */
-    private $endDate;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="comment", type="datetime", type="string", length=255)
@@ -93,7 +78,7 @@ class RentRequest implements NotifiableInterface
     }
 
     /**
-     * @return Gite
+     * @return mixed
      */
     public function getGite()
     {
@@ -101,7 +86,7 @@ class RentRequest implements NotifiableInterface
     }
 
     /**
-     * @param Gite $gite
+     * @param mixed $gite
      */
     public function setGite($gite)
     {
@@ -138,38 +123,6 @@ class RentRequest implements NotifiableInterface
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
-    }
-
-    /**
-     * @return DateTimeType
-     */
-    public function getStartDate()
-    {
-        return $this->startDate;
-    }
-
-    /**
-     * @param DateTimeType $startDate
-     */
-    public function setStartDate($startDate)
-    {
-        $this->startDate = $startDate;
-    }
-
-    /**
-     * @return DateTimeType
-     */
-    public function getEndDate()
-    {
-        return $this->endDate;
-    }
-
-    /**
-     * @param DateTimeType $endDate
-     */
-    public function setEndDate($endDate)
-    {
-        $this->endDate = $endDate;
     }
 
     /**

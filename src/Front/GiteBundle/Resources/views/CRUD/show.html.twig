@@ -233,7 +233,7 @@
                                     </div>
                                 {% endif %}
                                 <a href="{{ path('rent_a_gite_request', {'id': gite.id}) }}" class="btn btn-sushi btn-sm offset-11 btn-full-width">Contacter le propiétaire</a>
-                                {#<a href="#" class="btn btn-primary btn-sm btn-min-width-md btn-full-width offset-10"><span class="icon icon-left icon-sm fa-heart"></span>add to favoRites</a>#}
+                                <a href="{{ path('information_request', {'id': gite.id}) }}" class="btn btn-primary btn-sm btn-min-width-md btn-full-width offset-10">Une question <span class="icon icon-sm fa-question"></span></a>
                             </div>
                             <div class="sidebar-module">
                                 <h4 class="border-bottom">Request a Showing</h4>
