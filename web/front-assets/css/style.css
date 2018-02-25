@@ -24255,9 +24255,7 @@ strong {
 .section-full {
   padding-top: 72px;
   padding-bottom: 29px;
-  background-image: url("../images/elements-1.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
+  background: url("../images/photo-bretagne-2.png") no-repeat center;
   background-size: cover;
 }
 
@@ -24278,12 +24276,12 @@ strong {
 }
 
 .section-full-mod-1 {
-  background-image: url("../images/elements-2.jpg");
+  background-image: url("../images/photo-bretagne-1.jpg");
 }
 
 @media (min-width: 1200px) {
   .section-full-mod-1 {
-    padding-bottom: 180px;
+    padding-bottom: 72px;
   }
 }
 
