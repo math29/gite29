@@ -22,3 +22,7 @@ fos_js_routing:
 comur_image:
     resource: "@ComurImageBundle/Resources/config/routing.yml"
     prefix:   /
+
+mgilet_notifications:
+    resource: "@MgiletNotificationBundle/Controller/"
+    prefix: /notifications

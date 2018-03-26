@@ -75,7 +75,7 @@ var userAgent = navigator.userAgent.toLowerCase(),
  * Initialize All Scripts
  */
 $document.ready(function() {
-  var isNoviBuilder = window.xMode;
+  
   /**
    * getSwiperHeight
    * @description  calculate the height of swiper slider basing on data attr
@@ -145,18 +145,15 @@ $document.ready(function() {
       .find("[data-caption-animate]")
       .each(function() {
         var $this = $(this),
-          delay = $this.attr("data-caption-delay");
-        if (!isNoviBuilder) {
-          setTimeout(function() {
-            $this
-              .removeClass("not-animated")
-              .addClass($this.attr("data-caption-animate"))
-              .addClass("animated");
-          }, delay ? parseInt(delay) : 0);
-        } else {
+            delay = $this.attr("data-caption-delay");
+        
+        setTimeout(function() {
           $this
             .removeClass("not-animated")
-        }
+            .addClass($this.attr("data-caption-animate"))
+            .addClass("animated");
+        }, delay ? parseInt(delay) : 0);
+        
       });
   }
 
@@ -204,14 +201,11 @@ $document.ready(function() {
    * isScrolledIntoView
    * @description  check the element whas been scrolled into the view
    */
-  function isScrolledIntoView(elem) {
+  function isScrolledIntoView(elem) { 
     var $window = $(window);
-    if  (!isNoviBuilder){
-      return elem.offset().top + elem.outerHeight() >= $window.scrollTop() && elem.offset().top <= $window.scrollTop() + $window.height();
-    }
-    else{
-      return true;
-    }
+    
+    return elem.offset().top + elem.outerHeight() >= $window.scrollTop() && elem.offset().top <= $window.scrollTop() + $window.height();
+    
   }
 
   /**
@@ -402,7 +396,7 @@ $document.ready(function() {
    * RD Audio player
    * @description Enables RD Audio player plugin
    */
-  if (plugins.rdAudioPlayer.length > 0 && !isNoviBuilder) {
+  if (plugins.rdAudioPlayer.length > 0) {
     var i;
     for (i = 0; i < plugins.rdAudioPlayer.length; i++) {
       $(plugins.rdAudioPlayer[i]).RDAudio();
@@ -413,7 +407,7 @@ $document.ready(function() {
    * Text Rotator
    * @description Enables Text Rotator plugin
    */
-  if (plugins.textRotator.length && !isNoviBuilder) {
+  if (plugins.textRotator.length) {
     var i;
     for (i = 0; i < plugins.textRotator.length; i++) {
       var textRotatorItem = plugins.textRotator[i];
@@ -425,55 +419,56 @@ $document.ready(function() {
    * RD Google Maps
    * @description Enables RD Google Maps plugin
    */
+  /**
+   * RD Google Maps
+   * @description Enables RD Google Maps plugin
+   */
   if (plugins.rdGoogleMaps.length) {
-    var i;
-
-    $.getScript("//maps.google.com/maps/api/js?key=AIzaSyAFeB0kVA6ouyJ_gEvFbMaefLy3cBCyRwo&sensor=false&libraries=geometry,places&v=3.7", function() {
+    $.getScript("//maps.google.com/maps/api/js?sensor=false&libraries=geometry,places&v=3.7", function () {
       var head = document.getElementsByTagName('head')[0],
         insertBefore = head.insertBefore;
 
-      head.insertBefore = function(newElement, referenceElement) {
+      head.insertBefore = function (newElement, referenceElement) {
         if (newElement.href && newElement.href.indexOf('//fonts.googleapis.com/css?family=Roboto') != -1 || newElement.innerHTML.indexOf('gm-style') != -1) {
           return;
         }
         insertBefore.call(head, newElement, referenceElement);
       };
 
-      function initGoogleMap() {
-        var $this = $(this),
-          styles = $this.attr("data-styles");
+      lazyInit(plugins.rdGoogleMaps, function () {
+        var styles = plugins.rdGoogleMaps.attr("data-styles");
 
-        $this.googleMap({
+        plugins.rdGoogleMaps.googleMap({
           styles: styles ? JSON.parse(styles) : [],
-          onInit: function(map) {
+          onInit: function (map) {
             var inputAddress = $('#rd-google-map-address');
 
             if (inputAddress.length) {
               var input = inputAddress;
               var geocoder = new google.maps.Geocoder();
-              var marker = new google.maps.Marker({
-                map: map,
-                icon: "front-assets/images/gmap_marker.png",
-              });
+              var marker = new google.maps.Marker(
+                {
+                  map: map,
+                  icon: "images/gmap_marker.png",
+                }
+              );
               var autocomplete = new google.maps.places.Autocomplete(inputAddress[0]);
               autocomplete.bindTo('bounds', map);
               inputAddress.attr('placeholder', '');
-              inputAddress.on('change', function() {
+              inputAddress.on('change', function () {
                 $("#rd-google-map-address-submit").trigger('click');
               });
-              inputAddress.on('keydown', function(e) {
-                if (e.keyCode == 13) {
+              inputAddress.on('keydown', function (e) {
+                if( e.keyCode == 13) {
                   $("#rd-google-map-address-submit").trigger('click');
                 }
               });
 
 
-              $("#rd-google-map-address-submit").on('click', function(e) {
+              $("#rd-google-map-address-submit").on('click', function (e) {
                 e.preventDefault();
                 var address = input.val();
-                geocoder.geocode({
-                  'address': address
-                }, function(results, status) {
+                geocoder.geocode({'address': address}, function (results, status) {
                   if (status == google.maps.GeocoderStatus.OK) {
                     var latitude = results[0].geometry.location.lat();
                     var longitude = results[0].geometry.location.lng();
@@ -491,16 +486,8 @@ $document.ready(function() {
               });
             }
           }
-        });
-      }
-
-      for (i = 0; i < plugins.rdGoogleMaps.length; i++) {
-        if (isNoviBuilder !== "designMode") {
-          lazyInit($(plugins.rdGoogleMaps[i]), initGoogleMap.bind(plugins.rdGoogleMaps[i]));
-        } else {
-          initGoogleMap.bind(plugins.rdGoogleMaps[i])();
-        }
-      }
+        })
+      });
     });
   }
 
@@ -529,6 +516,19 @@ $document.ready(function() {
     }
   }
 
+  /**
+   * Responsive Tabs
+   * @description Enables Responsive Tabs plugin
+   */
+  if (plugins.responsiveTabs.length > 0) {
+    var i;
+    for (i = 0; i < plugins.responsiveTabs.length; i++) {
+      var responsiveTabsItem = $(plugins.responsiveTabs[i]);
+      responsiveTabsItem.easyResponsiveTabs({
+        type: responsiveTabsItem.attr("data-type") === "accordion" ? "accordion" : "default"
+      });
+    }
+  }
 
   /**
    * RD Instafeed
@@ -563,10 +563,7 @@ $document.ready(function() {
     var i;
     for (i = 0; i < plugins.materialTabs.length; i++) {
       var materialTabsItem = plugins.materialTabs[i];
-      $(materialTabsItem).RDMaterialTabs({
-        dragContent: isNoviBuilder ? false : true,
-        dragList: isNoviBuilder ? false : true
-      });
+      $(materialTabsItem).RDMaterialTabs({});
     }
   }
 
@@ -819,7 +816,7 @@ $document.ready(function() {
 
    /**
    * RD Calendar
-   * @description Enables RD Calendar plugin
+   * @description Enables RD Calendar plugin 
    */
   if (plugins.calendar.length) {
     var i;
@@ -1004,7 +1001,7 @@ $document.ready(function() {
               var bar = event.data.barItem;
               var $this = $(this);
 
-              if (isScrolledIntoView($this) && this.className.indexOf("progress-bar--animated") === -1) {
+              if (isScrolledIntoView($this) && this.className.indexOf("progress-bar--animated") === -1) { 
                 this.className += " progress-bar--animated";
                 bar.animate(parseInt($this.attr("data-value")) / 100.0, {
                   easing: $this.attr("data-easing"),
@@ -1039,7 +1036,7 @@ $document.ready(function() {
    * UI To Top
    * @description Enables ToTop Button
    */
-  if (isDesktop && !isNoviBuilder) {
+  if (isDesktop) {
     $().UItoTop({
       easingType: 'easeOutQuart',
       containerClass: 'ui-to-top fa fa-angle-up'
@@ -1052,19 +1049,19 @@ $document.ready(function() {
    */
   if (plugins.rdNavbar.length) {
     plugins.rdNavbar.RDNavbar({
-      stickUpClone: (plugins.rdNavbar.attr("data-stick-up-clone") && !isNoviBuilder) ? plugins.rdNavbar.attr("data-stick-up-clone") === 'true' : false,
+      stickUpClone: (plugins.rdNavbar.attr("data-stick-up-clone")) ? plugins.rdNavbar.attr("data-stick-up-clone") === 'true' : false,
       responsive: {
         0: {
-          stickUp: plugins.rdNavbar.attr("data-stick-up") ? (!isNoviBuilder ? plugins.rdNavbar.attr("data-stick-up") === 'true' : false) : isNoviBuilder !== "designMode"
+          stickUp: plugins.rdNavbar.attr("data-stick-up") ? plugins.rdNavbar.attr("data-stick-up") === 'true' : false
         },
         768: {
-          stickUp: plugins.rdNavbar.attr("data-sm-stick-up") ? (!isNoviBuilder ? plugins.rdNavbar.attr("data-sm-stick-up") === 'true' : false) : isNoviBuilder !== "designMode"
+          stickUp: plugins.rdNavbar.attr("data-sm-stick-up") ? plugins.rdNavbar.attr("data-sm-stick-up") === 'true' : false
         },
         992: {
-          stickUp: plugins.rdNavbar.attr("data-md-stick-up") ? (!isNoviBuilder ? plugins.rdNavbar.attr("data-md-stick-up") === 'true' : false) : isNoviBuilder !== "designMode"
+          stickUp: plugins.rdNavbar.attr("data-md-stick-up") ? plugins.rdNavbar.attr("data-md-stick-up") === 'true' : false
         },
         1200: {
-          stickUp: plugins.rdNavbar.attr("data-lg-stick-up") ? (!isNoviBuilder ? plugins.rdNavbar.attr("data-lg-stick-up") === 'true' : false) : isNoviBuilder !== "designMode"
+          stickUp: plugins.rdNavbar.attr("data-lg-stick-up") ? plugins.rdNavbar.attr("data-lg-stick-up") === 'true' : false
         }
       }
     });
@@ -1122,7 +1119,7 @@ $document.ready(function() {
         .addClass("not-animated")
         .end()
         .swiper({
-          autoplay: isNoviBuilder ? null :  s.attr('data-autoplay') ? s.attr('data-autoplay') === "false" ? undefined : s.attr('data-autoplay') : 5000,
+          autoplay: s.attr('data-autoplay') ? s.attr('data-autoplay') === "false" ? undefined : s.attr('data-autoplay') : 5000,
           direction: s.attr('data-direction') ? s.attr('data-direction') : "horizontal",
           effect: s.attr('data-slide-effect') ? s.attr('data-slide-effect') : "slide",
           speed: s.attr('data-slide-speed') ? s.attr('data-slide-speed') : 600,
@@ -1132,7 +1129,7 @@ $document.ready(function() {
           nextButton: next.length ? next.get(0) : null,
           prevButton: prev.length ? prev.get(0) : null,
           pagination: pag.length ? pag.get(0) : null,
-          simulateTouch: s.attr('data-simulate-touch') && !isNoviBuilder ? s.attr('data-simulate-touch') === "true" : false,
+          simulateTouch: s.attr('data-simulate-touch') ? s.attr('data-simulate-touch') === "true" : false,
           paginationClickable: pag.length ? pag.attr("data-clickable") !== "false" : false,
           paginationBulletRender: pag.length ? pag.attr("data-index-bullet") === "true" ? function(index, className) {
             return '<span class="' + className + '">' + (index + 1) + '</span>';
@@ -1140,7 +1137,7 @@ $document.ready(function() {
           scrollbar: bar.length ? bar.get(0) : null,
           scrollbarDraggable: bar.length ? bar.attr("data-draggable") !== "false" : true,
           scrollbarHide: bar.length ? bar.attr("data-draggable") === "false" : false,
-          loop: isNoviBuilder ? false : s.attr('data-loop') !== "false",
+          loop: s.attr('data-loop') !== "false",
           onTransitionStart: function(swiper) {
             toggleSwiperInnerVideos(swiper);
           },
@@ -1219,17 +1216,6 @@ $document.ready(function() {
    */
   if (plugins.rdParallax.length) {
     var i;
-    if (isNoviBuilder) {
-      for (i = 0; i < plugins.rdParallax.length; i++) {
-        var parallax = $(plugins.rdParallax[i]);
-        var imgPath = parallax.find(".rd-parallax-layer" + "[data-type=media]").first().attr("data-url");
-        parallax.css({
-          "background-image": 'url(' + imgPath + ')',
-          "background-attachment": "fixed",
-          "background-size": "cover"
-        });
-      }
-    } else {
       $.RDParallax();
 
       if (!isIE && !isMobile) {
@@ -1244,13 +1230,14 @@ $document.ready(function() {
           }
         });
       }
-    }
+
     $("a[href='#']").on("click", function(event) {
       setTimeout(function() {
         $(window).trigger("resize");
       }, 300);
     });
   }
+  
 
   /**
    * RD Search
@@ -1342,7 +1329,7 @@ $document.ready(function() {
           slidesToScroll: parseInt($slickItem.attr('data-slide-to-scroll')) || 1,
           asNavFor: $slickItem.attr('data-for') || false,
           dots: $slickItem.attr("data-dots") == "true",
-          infinite: isNoviBuilder ? false : $slickItem.attr("data-loop") == "true",
+          infinite: $slickItem.attr("data-loop") == "true",
           focusOnSelect: true,
           arrows: $slickItem.attr("data-arrows") == "true",
           swipe: $slickItem.attr("data-swipe") == "true",
@@ -1417,15 +1404,15 @@ $document.ready(function() {
             responsive[values[j]]["margin"] = k < 0 ? 30 : parseInt(c.attr("data" + aliaces[k] + "margin"));
           }
         }
-      }
+      } 
 
       c.owlCarousel({
-        autoplay: isNoviBuilder === "designMode" ? false : c.attr("data-autoplay") === "true",
-        loop: isNoviBuilder === "designMode" ? false : c.attr("data-loop"),
+        autoplay:  c.attr("data-autoplay") === "true", 
+        loop:  c.attr("data-loop") === "true",
         items: 1,
         dotsContainer: c.attr("data-pagination-class") || false,
         navContainer: c.attr("data-navigation-class") || false,
-        mouseDrag: isNoviBuilder === "designMode" ? false : c.attr("data-mouse-drag") !== "false",
+        mouseDrag:  c.attr("data-mouse-drag") !== "false",
         nav: c.attr("data-nav") === "true",
         dots: c.attr("data-dots") === "true",
         dotsEach: c.attr("data-dots-each") ? parseInt(c.attr("data-dots-each")) : false,
@@ -1477,24 +1464,17 @@ $document.ready(function() {
 
       isogroup.push(iso);
     }
-
-    if (isNoviBuilder) {
-      for (i = 0; i < isogroup.length; i++) {
-        isogroup[i].element.className += " isotope--loaded";
-        isogroup[i].layout();
-      }
-    } else {
-      $(window).on('load', function() {
-        setTimeout(function() {
-          var i;
-          for (i = 0; i < isogroup.length; i++) {
-            isogroup[i].element.className += " isotope--loaded";
-            isogroup[i].layout();
-          }
-        }, 600);
-      });
-    }
-
+    
+    $(window).on('load', function() {
+      setTimeout(function() {
+        var i;
+        for (i = 0; i < isogroup.length; i++) {
+          isogroup[i].element.className += " isotope--loaded";
+          isogroup[i].layout();
+        }
+      }, 600);
+    });
+    
     var resizeTimout;
 
     $("[data-isotope-filter]").on("click", function(e) {
@@ -1516,7 +1496,7 @@ $document.ready(function() {
    * WOW
    * @description Enables Wow animation plugin
    */
-  if (isDesktop && $html.hasClass("wow-animation") && $(".wow").length && !isNoviBuilder) {
+  if (isDesktop && $html.hasClass("wow-animation") && $(".wow").length) {
     new WOW().init();
   }
 
@@ -1614,7 +1594,7 @@ $document.ready(function() {
           "counter": i
         },
         beforeSubmit: function() {
-          if (!isNoviBuilder) {
+          
             var form = $(plugins.rdMailForm[this.extraData.counter]);
             var inputs = form.find("[data-constraints]");
             if (isValidated(inputs)) {
@@ -1627,18 +1607,18 @@ $document.ready(function() {
             } else {
               return false;
             }
-          }
+          
 
         },
         error: function(result) {
-          if (!isNoviBuilder) {
+          
             var output = $("#" + $(plugins.rdMailForm[this.extraData.counter]).attr("data-form-output"));
             output.text(msg[result]);
-          }
+         
 
         },
         success: function(result) {
-          if (!isNoviBuilder) {
+          
             var form = $(plugins.rdMailForm[this.extraData.counter]);
             var output = $("#" + form.attr("data-form-output"));
             form.addClass('success');
@@ -1666,7 +1646,7 @@ $document.ready(function() {
               output.removeClass("active");
               form.removeClass('success');
             }, 5000);
-          }
+          
         }
       });
     }
@@ -1676,7 +1656,7 @@ $document.ready(function() {
    * RD Range
    * @description Enables RD Range plugin
    */
-  if (plugins.rdRange.length && !isNoviBuilder) {
+  if (plugins.rdRange.length ) {
     plugins.rdRange.RDRange({});
   }
 
@@ -1684,7 +1664,7 @@ $document.ready(function() {
    * PhotoSwipe Gallery
    * @description Enables PhotoSwipe Gallery plugin
    */
-  if (plugins.photoSwipeGallery.length && !isNoviBuilder) {
+  if (plugins.photoSwipeGallery.length ) {
 
     // init image click event
     $document.delegate("[data-photo-swipe-item]", "click", function(event) {
@@ -1806,7 +1786,7 @@ $document.ready(function() {
   *Add class on Click at Search Form
   */
   $features.on("click", function(e) {
-    var $checkboxList = $('ul.checkbox-list');
+    var $checkboxList = $('ul.checkbox-list'); 
 
     $(this).toggleClass('active');
     if ($checkboxList.is(":visible")) {
