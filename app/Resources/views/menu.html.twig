@@ -6,7 +6,7 @@
                 <div class="rd-navbar-top-panel-wrap">
                     <dl class="dl-horizontal-mod-1 login">
                         <dt><span class="mdi mdi-login icon-xxs-mod-2"></span></dt>
-                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        {% if app.user and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                             {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
                             <a href="{{ path('fos_user_security_logout') }}">
                                 {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
@@ -31,7 +31,7 @@
                         <li><a href="#" class="fa-pinterest-p"></a></li>
                     </ul>
                     <div class="btn-group">
-                        {% if is_granted('ROLE_USER') %}
+                        {% if app.user and is_granted('ROLE_USER') %}
                             <a href="{{ path('new-gite') }}" class="btn btn-sm btn-primary">Submit Property</a>
                         {% endif %}
                     </div>
@@ -45,7 +45,7 @@
                     <div class="rd-navbar-brand"><a href="{{ path('home') }}" class="brand-name"><img src="{{ asset('front-assets/images/logo-1.svg') }}" height="42px" width="197px" alt=""></a></div>
                 </div>
                 <div class="btn-group">
-                    {% if is_granted('ROLE_USER') %}
+                    {% if app.user and is_granted('ROLE_USER') %}
                         <a href="{{ path('new-gite') }}" class="btn btn-sm btn-primary">Inscrire son gite</a>
                     {% endif %}
                 </div>
@@ -54,7 +54,7 @@
                     <ul class="rd-navbar-nav">
                         <li><a href="{{ path('home') }}">Accueil</a></li>
                         <li><a href="{{ path('search_display_all') }}">Les gites</a></li>
-                        {% if is_granted('ROLE_USER') %}
+                        {% if app.user and is_granted('ROLE_USER') %}
                             <li class="link-group"><a href="{{ path('new-gite') }}" class="btn btn-sm btn-primary">Inscrire son gite</a></li>
                         {% endif %}
                     </ul>

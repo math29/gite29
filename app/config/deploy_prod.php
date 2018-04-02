@@ -12,9 +12,9 @@ return new class extends DefaultDeployer
             // the absolute path of the remote server directory where the project is deployed
             ->deployDir('/var/www/gite29')
             // the URL of the Git repository where the project code is hosted
-//            ->repositoryUrl('git@github.com:math29/gite29.git')
+            ->repositoryUrl('git@github.com:math29/gite29.git')
             // the repository branch to deploy
-//            ->repositoryBranch('master')
+            ->repositoryBranch('master')
         ;
     }
 
