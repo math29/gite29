@@ -27,7 +27,8 @@ return new class extends DefaultDeployer
     // run some local or remote commands after the deployment is finished
     public function beforeFinishingDeploy()
     {
-        // $this->runRemote('{{ console_bin }} app:my-task-name');
+        $this->runRemote('ls');
+         // $this->runRemote('{{ console_bin }} app:my-task-name');
         // $this->runLocal('say "The deployment has finished."');
     }
 };
